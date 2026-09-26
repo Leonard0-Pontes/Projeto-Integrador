@@ -1,23 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro - MentorCon</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
+
 <body>
-    <h2>MENTORCON</h2>
-    <form>
-        <label for="nomeFull">Nome Completo:</label>
-        <input type="text" placeholder="Fulano Sicrano de Beltrano"><br>
-        <label for="email">Email:</label>
-        <input type="text" placeholder="fulano@email.com"><br>
-        <label for="senha">Senha:</label>
-        <input type="password"><br>
-        <label for="confSenha">Confirmar Senha:</label>
-        <input type="password"><br>
-        <input type="submit" value="Cadastrar">
-        <input type="button" value="Cancelar" onclick="window.location.href='./login.html'">
-    </form>
+    <div class="container text-center mt-4">
+        <div class="row justify-content-center">
+            <div class="col-3">
+                <h2>MENTORCON</h2>
+                <form>
+                    <label for="nomeFull" class="form-label">Nome Completo:</label>
+                    <input type="text" class="form-control" placeholder="Fulano Sicrano de Beltrano"><br>
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="text" class="form-control" placeholder="fulano@email.com"><br>
+                    <label for="senha" class="form-label">Senha:</label>
+                    <input type="password" class="form-control"><br>
+                    <label for="confSenha" class="form-label">Confirmar Senha:</label>
+                    <input type="password" class="form-control"><br>
+                    <input type="submit" class="btn btn-success" value="Cadastrar">
+                    <input type="button" class="btn btn-danger" value="Cancelar" onclick="window.location.href='./login.html'">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
