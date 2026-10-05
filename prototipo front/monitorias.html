@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitorias Confirmadas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="topbar">
+        <div>
+            <button>&#9776; Menu</button>
+            <strong class="nav-brand">NOME Empresa</strong>
+        </div>
+        <nav>
+            <a href="dashboard.html" class="nav-link">Dashboard</a>
+            <a href="perfil.html" class="nav-link">Meu Perfil</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Monitorias Confirmadas</h2>
+        <br>
+
+        <section>
+            <form action="#" method="GET">
+                <fieldset>
+                    <legend>
+                        <input type="checkbox" id="filtros" name="filtros">
+                        <label for="filtros">Filtros</label>
+                    </legend>
+                    <div class="grid-2-cols">
+                        <div>
+                            <label for="filtro_disciplina">Disciplina:</label>
+                            <input type="text" id="filtro_disciplina" name="disciplina">
+                        </div>
+                        <div>
+                            <label for="filtro_monitor">Monitor:</label>
+                            <input type="text" id="filtro_monitor" name="monitor">
+                        </div>
+                        <div>
+                            <label for="filtro_periodo">Período:</label>
+                            <input type="text" id="filtro_periodo" name="periodo">
+                        </div>
+                        <div>
+                            <label for="filtro_horario">Horário:</label>
+                            <input type="text" id="filtro_horario" name="horario">
+                        </div>
+                        <div>
+                            <label for="filtro_local">Local:</label>
+                            <input type="text" id="filtro_local" name="local">
+                        </div>
+                        <div>
+                            <label for="filtro_assunto">Assunto:</label>
+                            <input type="text" id="filtro_assunto" name="assunto">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-actions">
+                        <button type="submit" class="primario">Confirmar</button>
+                        <button type="reset" class="secundario">Cancelar</button>
+                    </div>
+                </fieldset>
+            </form>
+        </section>
+
+        <section>
+            <article>
+                <p>Monitoria de Matemática Discreta - João Silva</p>
+                <p class="info-desc">Segunda-feira, 14:00 - 16:00 | Sala 12</p>
+                <div class="action-buttons">
+                    <button class="primario">Confirmar</button>
+                    <button class="secundario">Contato</button>
+                </div>
+            </article>
+            <article>
+                <p>Monitoria de Programação Web - Maria Souza</p>
+                <p class="info-desc">Terça-feira, 10:00 - 12:00 | Lab 3</p>
+                <div class="action-buttons">
+                    <button class="alerta">Cancelar</button>
+                    <button class="secundario">Contato</button>
+                </div>
+            </article>
+        </section>
+    </main>
+</body>
+
+</html>
