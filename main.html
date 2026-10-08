@@ -11,8 +11,45 @@
 </head>
 
 <body>
-    <h1>MentorCon</h1>
-    <p class="destaque">Onde uma mão lava a outra.</p>
+    <div class="container">
+        <div class="row">
+            <nav class="navbar navbar-expand-lg bg-success-subtle">
+                <div class="container-fluid">
+                    <p class="navbar-brand">MENTORCON</p>
+                </div>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">Central</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link">Meu Perfil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link">Monitorias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link">Sair</a>
+                    </li>
+                </ul>
+            </nav>
+            <h2>Disciplinas cursando:</h2>
+            <input type="text" placeholder="Digite uma disciplina">
+            <hr style="border: 2px solid white; margin-top: 1.5rem;">
+            <h2>Solicitações:</h2>
+            <textarea name="solicitacao" id="solicitacao" placeholder="Descreva sua solicitação aqui..."></textarea>
+            <input type="submit" value="Enviar">
+            <hr style="border: 2px solid white; margin-top: 1.5rem;">
+            <h2>Solicitações Abertas:</h2>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Disciplina: X</h5>
+                    <p class="card-text">Horário: Seg, 14:00 - 16:00</p>
+                    <a href="" class="btn btn-primary">Atender</a>
+                    <a href="" class="btn btn-secondary">Ver mais</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>

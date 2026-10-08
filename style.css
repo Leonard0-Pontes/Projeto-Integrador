@@ -18,7 +18,7 @@
     font-size: 1.4rem;
 }
 
-input[type=text], input[type=password] {
+.inputCard {
     border-top: none;
     border-left: none;
     border-right: none;
