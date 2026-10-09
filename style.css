@@ -1,9 +1,14 @@
-.destaque {
-    font-weight: bold;
+.caixaTexto {
+    width: 100%;
+    height: 3.5rem;
+}
+
+.divisor {
+    margin: 2rem 0 2rem 0;
 }
 
 .intro {
-    margin-top: 3rem;
+    margin: 3rem;
 }
 
 .card-title {
