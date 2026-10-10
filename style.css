@@ -33,3 +33,7 @@
     border-right: none;
     border-radius: 0;
 }
+
+.overflowFull {
+    width: 100%;
+}
