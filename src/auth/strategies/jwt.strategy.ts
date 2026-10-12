@@ -5,8 +5,9 @@ import { Funcao } from '../../usuario/usuario.service';
 
 type JwtPayload = {
   sub: number;
+  nome: string;
   email: string;
-  papel: Funcao;
+  funcao: Funcao;
 };
 
 @Injectable()
@@ -28,8 +29,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   validate(payload: JwtPayload) {
     return {
       id: payload.sub,
+      nome: payload.nome,
       email: payload.email,
-      papel: payload.papel,
+      funcao: payload.funcao,
     };
   }
 }
