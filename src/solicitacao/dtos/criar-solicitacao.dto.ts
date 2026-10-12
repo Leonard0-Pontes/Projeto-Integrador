@@ -1,5 +1,7 @@
 import { IsString, IsMilitaryTime, IsDateString, IsNotEmpty, IsOptional, IsIn, MaxLength } from "class-validator";
 
+export type StatusSolicitacao = 'pendente' | 'aceita' | 'concluida';
+
 export class CriarSolicitacaoDto {
     @IsString()
     @IsNotEmpty()
@@ -12,12 +14,10 @@ export class CriarSolicitacaoDto {
     descricao?: string
 
     @IsDateString()
-    @IsOptional()
     @MaxLength(10)
     data_preferida!: string
 
     @IsString()
-    @IsOptional()
     @IsMilitaryTime()
     horario_preferido!: string
 
@@ -25,7 +25,7 @@ export class CriarSolicitacaoDto {
     @IsOptional()
     modalidade_preferida?: string
 
-    @IsIn(['pendente, aceita, concluida'])
+    @IsIn(['pendente', 'aceita', 'concluida'])
     @IsNotEmpty()
-    status!: string
+    status!: StatusSolicitacao
 }
