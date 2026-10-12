@@ -31,7 +31,7 @@ if (formulario) {
             console.log('Dados recebidos da API:', data); // <-- Passo 4
 
             // Tenta salvar o token
-            localStorage.setItem('token', data.accessToken);
+            sessionStorage.setItem('token', data.accessToken);
             console.log('Token salvo com sucesso:', localStorage.getItem('token')); 
 
             window.location.href = 'index.html';
