@@ -31,6 +31,7 @@ export class SolicitacaoService {
     const novaSolicitacao: Solicitacao = {
       id: this.solicitacao.length + 1,
       ...dados,
+      status: 'pendente',
       criadoEm: new Date().toISOString(),
     };
     this.solicitacao.push(novaSolicitacao);

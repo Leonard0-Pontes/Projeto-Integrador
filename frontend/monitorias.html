@@ -41,11 +41,11 @@
         </header>
         <main class="row justify-content-center my-4">
             <div class="col-11">
-                <h3 class="mb-3">Monitorias confirmadas:</h3>
+                <h3 class="mb-3">Solicitações:</h3>
                 <div class="card">
                     <div class="card-body">
-                        <form>
-                            <div class="card-header text-center" style="margin-bottom: 1rem;">Filtros</div>
+                        <h5 class="card-title">Criar Solicitação:</h5>
+                        <form id="criarSolicita">
                             <div class="row card-space">
                                 <div class="col">
                                     <label for="disciplina" class="form-label">Disciplina:</label><br>
@@ -61,8 +61,8 @@
                                     <input type="text" id="monitor" name="monitor" class="form-control">
                                 </div>
                                 <div class="col">
-                                    <label for="periodo" class="form-label">Período:</label><br>
-                                    <input type="text" id="periodo" name="monitor" class="form-control">
+                                    <label for="data" class="form-label">Data:</label><br>
+                                    <input type="text" id="data" name="data" class="form-control">
                                 </div>
                             </div>
                             <div class="row card-space">
@@ -79,6 +79,53 @@
                                     <input type="text" id="assunto" name="assunto" class="form-control">
                                 </div>
                             </div>
+                            <div class="row justify-content-center">
+                                <div class="col-6">
+                                    <input class="btn btn-primary overflowFull" type="submit" value="Enviar">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <hr class="divisor">
+                <h3 class="mb-3">Solicitações Pendentes:</h3>
+                <div class="card">
+                    <div class="card-body">
+                        <form>
+                            <div class="card-header text-center" style="margin-bottom: 1rem;">Filtros</div>
+                            <div class="row card-space">
+                                <div class="col">
+                                    <label for="disciplinaFilter" class="form-label">Disciplina:</label><br>
+                                    <select class="form-select" name="disciplinaFilter" id="disciplinaFilter">
+                                        <option selected>Escolha uma disciplina</option>
+                                        <option value="math">Matemática</option>
+                                        <option value="ingles">Inglês</option>
+                                        <option value="redes">Redes</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label for="monitorFilter" class="form-label">Monitor:</label><br>
+                                    <input type="text" id="monitorFilter" name="monitorFilter" class="form-control">
+                                </div>
+                                <div class="col">
+                                    <label for="dataFilter" class="form-label">Data:</label><br>
+                                    <input type="text" id="dataFilter" name="dataFilter" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row card-space">
+                                <div class="col">
+                                    <label for="horarioFilter" class="form-label">Horário:</label>
+                                    <input type="text" id="horarioFilter" name="horarioFilter" class="form-control">
+                                </div>
+                                <div class="col">
+                                    <label for="localFilter" class="form-label">Local:</label>
+                                    <input type="text" id="localFilter" name="localFilter" class="form-control">
+                                </div>
+                                <div class="col">
+                                    <label for="assuntoFilter" class="form-label">Assunto:</label>
+                                    <input type="text" id="assuntoFilter" name="assuntoFilter" class="form-control">
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col">
                                     <input type="submit" class="btn btn-success overflowFull" value="Confirmar">
@@ -88,6 +135,12 @@
                                 </div>
                             </div>
                         </form>
+                    </div>
+                </div>
+                <div id="listaSolicita"></div>
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Teste</h5>
                     </div>
                 </div>
             </div>
