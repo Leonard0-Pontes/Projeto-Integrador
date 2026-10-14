@@ -5,17 +5,17 @@ if (!token) {
     window.location.href = 'login.html';
 }
 
-// 1. Função para renderizar um card individual na tela
 function adicionarCardNaTela(monitoria) {
     const containerCards = document.getElementById('listaSolicita');
 
-    // Cria o elemento HTML do card
     const cardDiv = document.createElement('div');
     cardDiv.className = 'card mt-4';
     cardDiv.innerHTML = `
         <div class="card-body">
-            <h5 class="card-title">${monitoria.materia}</h5>
-            <p class="card-body">${monitoria.descricao}</p>
+            <h5 class="card-title">${monitoria.assunto}</h5>
+            <p class="card-body">${monitoria.data_preferida}, ${monitoria.horario_preferido}</p>
+            <button type="button" class="btn btn-success">Aceitar</button>
+            <button type="button" class="btn btn-danger">Recusar</button>
         </div>
     `;
 
@@ -42,13 +42,14 @@ async function carregarMonitorias() {
     }
 }
 
-const formSolicitacao = document.getElementById('formSolicitacao');
+const formSolicitacao = document.getElementById('criarSolicita');
 if (formSolicitacao) {
     formSolicitacao.addEventListener('submit', async (event) => {
         event.preventDefault();
 
-        const materia = document.getElementById('materia').value;
-        const descricao = document.getElementById('descricao').value;
+        const assunto = document.getElementById('assunto').value;
+        const data = document.getElementById('data').value;
+        const horario = document.getElementById('horario').value;
 
         try {
             const response = await fetch(`${API_URL}/solicitacoes`, {
@@ -57,7 +58,7 @@ if (formSolicitacao) {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ materia, descricao }),
+                body: JSON.stringify({ assunto: assunto, data_preferida: data, horario_preferido: horario }),
             });
 
             if (!response.ok) {
@@ -66,12 +67,9 @@ if (formSolicitacao) {
 
             const novaMonitoria = await response.json();
 
-            // Adiciona o card visualmente na hora sem precisar recarregar a página
             adicionarCardNaTela(novaMonitoria);
 
-            // Limpa o formulário
             formSolicitacao.reset();
-            alert('Solicitação criada com sucesso!');
         } catch (error) {
             console.error(error);
             alert('Não foi possível criar a solicitação.');
@@ -79,5 +77,4 @@ if (formSolicitacao) {
     });
 }
 
-// Executa ao carregar a página
 document.addEventListener('DOMContentLoaded', carregarMonitorias);

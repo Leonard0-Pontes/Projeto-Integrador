@@ -1,3 +1,4 @@
+import { Transform } from "class-transformer";
 import { IsString, IsMilitaryTime, IsDateString, IsNotEmpty, IsOptional, IsIn, MaxLength } from "class-validator";
 
 export type StatusSolicitacao = 'pendente' | 'aceita' | 'concluida';
@@ -27,5 +28,6 @@ export class CriarSolicitacaoDto {
 
     @IsIn(['pendente', 'aceita', 'concluida'])
     @IsNotEmpty()
-    status!: StatusSolicitacao
+    @Transform(({ value }) => value || 'pendente')
+    status: StatusSolicitacao = 'pendente'
 }
