@@ -1,7 +1,7 @@
 services:
   backend:
     build:
-      context: .
+      context: ./back-end
       dockerfile: Dockerfile
     container_name: pi_backend
     ports:

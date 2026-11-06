@@ -10,4 +10,10 @@ COPY . .
 
 EXPOSE 3000
 
+#Para desenvolvimento
+
 CMD ["npm", "run", "start:dev"]
+
+#para pruduçao 
+
+#CMD ["npm", "run", "start:prod"]
