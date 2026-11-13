@@ -7,8 +7,8 @@ import { CriarSolicitacaoDto } from './dtos/criar-solicitacao.dto';
 
 @Controller('solicitacoes')
 export class SolicitacaoController {
-    constructor(private readonly solicitacoesService: SolicitacaoService) { }
-
+    constructor(private readonly solicitacoesService: SolicitacaoService) {}
+    /*
     @UseGuards(JwtAuthGuard, RolesGuard)
     @Roles('aluno', 'monitor')
     @Post()
@@ -36,4 +36,5 @@ export class SolicitacaoController {
     aceitar(@Param('id', ParseIntPipe) id: number) {
         return this.solicitacoesService.aceitar(id);
     }
+    */
 }

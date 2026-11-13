@@ -8,25 +8,7 @@ type Solicitacao = CriarSolicitacaoDto & {
 
 @Injectable()
 export class SolicitacaoService {
-  private readonly solicitacao: Solicitacao[] = [
-    {
-      id: 1,
-      assunto: 'Dificuldade em trigonometria',
-      data_preferida: '2026-10-23',
-      horario_preferido: '14:00',
-      status: 'pendente',
-      criadoEm: '2026-10-11'
-    },
-    {
-      id: 2,
-      assunto: 'Problemas com código Python',
-      data_preferida: '2026-10-25',
-      horario_preferido: '08:00',
-      status: 'pendente',
-      criadoEm: '2026-10-11'
-    },
-  ];
-
+  /*
   criar(dados: CriarSolicitacaoDto) {
     const novaSolicitacao: Solicitacao = {
       id: this.solicitacao.length + 1,
@@ -57,4 +39,5 @@ export class SolicitacaoService {
     solicitacao.status = 'aceita';
     return solicitacao;
   }
+  */
 }

@@ -14,19 +14,19 @@ export class AuthService {
   ) {}
 
   async validarUsuario(email: string, senha: string) {
-    const usuario = this.usuarioService.buscarPorEmail(email);
+    const usuario = await this.usuarioService.buscarUsuario(email);
 
     if (!usuario) {
       return null;
     }
 
-    const senhaValida = await bcrypt.compare(senha, usuario.senha);
+    const senhaValida = await bcrypt.compare(senha, usuario.senha_hash);
 
     if (!senhaValida) {
       return null;
     }
 
-    const { senha: _senha, ...principal } = usuario;
+    const { senha_hash: _senha, ...principal } = usuario;
     return principal;
   }
 
@@ -36,6 +36,8 @@ export class AuthService {
       nome: usuario.nome,
       email: usuario.email,
       funcao: usuario.funcao,
+      curso: usuario.curso,
+      periodo: usuario.periodo,
     };
 
     return {

@@ -1,0 +1,118 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum funcaoUsuario {
+  Aluno
+  Monitor
+}
+
+enum modalidadePref {
+  Presencial
+  Online
+  Nenhuma
+}
+
+enum statusSolicit {
+  Pendente
+  Aceita
+}
+
+enum statusMonitor {
+  Marcada
+  Concluida
+  Cancelada
+}
+
+enum periodos {
+  Primeiro
+  Segundo
+  Terceiro
+  Quarto
+  Quinto
+  Sexto
+}
+
+model Usuario {
+  id  Int @id @default(autoincrement())
+  nome  String @db.VarChar(100)
+  email String @db.VarChar(100) @unique
+  senha_hash String @db.VarChar(100)
+  funcao funcaoUsuario
+  curso String @db.VarChar(50)
+  periodo periodos
+  is_admin Boolean @default(false)
+  ativo Boolean @default(true)
+  criado_em DateTime @db.Timestamptz()
+  atualizado_em DateTime @db.Timestamptz()
+  solicitacoes Solicitacoes[]
+  monitoria Monitoria[]
+  user_materia Usuario_Disciplina[]
+}
+
+model Disciplinas {
+  id Int @id @default(autoincrement())
+  nome String @db.VarChar(100)
+  codigo String @db.VarChar(50)
+  ativo Boolean @default(true)
+  criado_em DateTime @db.Timestamptz()
+  atualizado_em DateTime @db.Timestamptz()
+  solicitacoes Solicitacoes[]
+  user_materia Usuario_Disciplina[]
+}
+
+model Solicitacoes {
+  id Int @id @default(autoincrement())
+  aluno_id Int
+  aluno Usuario @relation(fields: [aluno_id], references: [id])
+  disciplina_id Int
+  disciplina Disciplinas @relation(fields: [disciplina_id], references: [id])
+  assunto String @db.VarChar(100)
+  descricao String? @db.VarChar(500)
+  preferencia_data DateTime @db.Date()
+  preferencia_horario DateTime @db.Time()
+  preferencia_modal modalidadePref
+  preferencia_local String? @db.VarChar(100)
+  status statusSolicit @default(Pendente)
+  criado_em DateTime @db.Timestamptz()
+  atualizado_em DateTime @db.Timestamptz()
+  monitoria Monitoria[]
+}
+
+model Monitoria {
+  id Int @id @default(autoincrement())
+  solicitacao_id Int
+  solicitacao Solicitacoes @relation(fields: [solicitacao_id], references: [id])
+  monitor_id Int
+  monitor Usuario @relation(fields: [monitor_id], references: [id])
+  data DateTime @db.Timestamptz()
+  horario_inicio DateTime @db.Time()
+  horario_fim DateTime @db.Time()
+  modalidade modalidadePref
+  local String @db.VarChar(250)
+  link String?
+  status statusMonitor @default(Marcada)
+  justificativa_cancel String? @db.VarChar(300)
+  criado_em DateTime @db.Timestamptz()
+  atualizado_em DateTime @db.Timestamptz()
+}
+
+model Usuario_Disciplina {
+  id Int @id @default(autoincrement())
+  usuario_id Int
+  usuario Usuario @relation(fields: [usuario_id], references: [id])
+  disciplina_id Int
+  disciplina Disciplinas @relation(fields: [disciplina_id], references: [id])
+  funcao funcaoUsuario
+  criado_em DateTime @db.Timestamptz()
+}

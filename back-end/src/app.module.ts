@@ -7,9 +7,10 @@ import { UsuarioModule } from './usuario/usuario.module';
 import { SolicitacaoModule } from './solicitacao/solicitacao.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
+import { PrismaModule } from "./prisma/prisma.module";
 
 @Module({
-  imports: [ConfigModule.forRoot({ isGlobal: true }), MonitoriaModule, DisciplinaModule, UsuarioModule, SolicitacaoModule, AuthModule],
+  imports: [ConfigModule.forRoot({ isGlobal: true }), MonitoriaModule, DisciplinaModule, UsuarioModule, SolicitacaoModule, AuthModule, PrismaModule],
   controllers: [AppController],
   providers: [AppService],
 })

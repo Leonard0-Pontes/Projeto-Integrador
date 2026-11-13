@@ -1,63 +1,52 @@
 import { Injectable } from '@nestjs/common';
 import { CriarUsuarioDto } from './dtos/criar-usuario.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { UsuarioModel } from 'src/generated/prisma/models';
+import * as bcrypt from 'bcrypt'
 
-export type Funcao = 'aluno' | 'monitor' | 'professor' | 'admin';
-
-export type Usuario = CriarUsuarioDto & {
-    id: number;
-    criadoEm: string;
-}
-
-export type UsuarioAutenticado = Omit<Usuario, 'senha'>;
+export type UsuarioAutenticado = Omit<UsuarioModel, 'senha_hash'>;
+export type UsuarioJwt = Pick<UsuarioModel, 'id' | 'nome' | 'email' | 'funcao' | 'curso' | 'periodo'>
 
 @Injectable()
 export class UsuarioService {
-    private usuario: Usuario[] = [
-        {
-            id: 1,
-            nome: 'Leonardo',
-            email: 'leo@email.com',
-            senha: '$2b$12$PHvkWinRGqZiV89CyqjWuewve6G2gnLnHMUg5csRn1urarH2jpt12',
-            funcao: 'aluno',
-            curso: 'TSI',
-            periodo: 4,
-            criadoEm: '2026-10-11',
-        },
-        {
-            id: 2,
-            nome: 'Paulo',
-            email: 'paulo@email.com',
-            senha: '$2b$12$V8Q6bP6m9vGqdkdAsBst.O.PsbyksuBrhsdVeQMDeLNCwvrLm.URC',
-            funcao: 'monitor',
-            curso: 'TSI',
-            periodo: 6,
-            criadoEm: '2026-10-11',
-        },
-        {
-            id: 3,
-            nome: 'Lucas',
-            email: 'lucas@email.com',
-            senha: '$2b$12$f.eRKV5bqPIKkfFQJ/UN2O.XkCUG89HNP6bgMLdXEFJaFxfFm1bf.',
-            funcao: 'admin',
-            criadoEm: '2026-10-11',
-        },
-    ]
+    constructor(private prisma: PrismaService) { }
 
-    criar(dados: CriarUsuarioDto) {
-        const novoUsuario: Usuario = {
-            id: this.usuario.length + 1,
-            ...dados,
-            criadoEm: new Date().toISOString(),
-        };
-        this.usuario.push(novoUsuario);
-        return novoUsuario;
+    async listarUsuarios() {
+        return this.prisma.usuario.findMany();
     }
 
-    listar() {
-        return this.usuario;
+    async buscarUsuario(email: string) {
+        return this.prisma.usuario.findUnique({
+            where: { email },
+        });
     }
 
-    buscarPorEmail(email: string) {
-        return this.usuario.find((usuario) => usuario.email === email);
+    async criarNovoUsuario(dados: CriarUsuarioDto) {
+        const senhaHash = await bcrypt.hash(dados.senha, 10);
+        const agora = new Date();
+        return this.prisma.usuario.create({
+            data: {
+                nome: dados.nome,
+                email: dados.email,
+                senha_hash: senhaHash,
+                funcao: dados.funcao,
+                curso: dados.curso,
+                periodo: dados.periodo,
+                criado_em: agora,
+                atualizado_em: agora,
+            },
+            select: {
+                id: true,
+                nome: true,
+                email: true,
+                funcao: true,
+                curso: true,
+                periodo: true,
+                is_admin: true,
+                ativo: true,
+                criado_em: true,
+                atualizado_em: true,
+            },
+        });
     }
 }
