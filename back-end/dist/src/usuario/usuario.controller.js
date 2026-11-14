@@ -16,13 +16,24 @@ exports.UsuarioController = void 0;
 const common_1 = require("@nestjs/common");
 const usuario_service_1 = require("./usuario.service");
 const criar_usuario_dto_1 = require("./dtos/criar-usuario.dto");
+const jwt_auth_guard_1 = require("../auth/guards/jwt-auth.guard");
+const admin_guard_1 = require("../auth/guards/admin.guard");
 let UsuarioController = class UsuarioController {
     usuariosService;
     constructor(usuariosService) {
         this.usuariosService = usuariosService;
     }
-    criar(body) {
+    criarUsuario(body) {
         return this.usuariosService.criarNovoUsuario(body);
+    }
+    tornarAdmin(id) {
+        return this.usuariosService.tornarAdmin(id);
+    }
+    listarUsuarios() {
+        return this.usuariosService.listarUsuarios();
+    }
+    buscarUsuario(email) {
+        return this.usuariosService.buscarUsuario(email);
     }
 };
 exports.UsuarioController = UsuarioController;
@@ -32,7 +43,30 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [criar_usuario_dto_1.CriarUsuarioDto]),
     __metadata("design:returntype", void 0)
-], UsuarioController.prototype, "criar", null);
+], UsuarioController.prototype, "criarUsuario", null);
+__decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, admin_guard_1.AdminGuard),
+    (0, common_1.Patch)(':id/admin'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], UsuarioController.prototype, "tornarAdmin", null);
+__decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, admin_guard_1.AdminGuard),
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], UsuarioController.prototype, "listarUsuarios", null);
+__decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, admin_guard_1.AdminGuard),
+    (0, common_1.Get)(':email'),
+    __param(0, (0, common_1.Param)('email')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], UsuarioController.prototype, "buscarUsuario", null);
 exports.UsuarioController = UsuarioController = __decorate([
     (0, common_1.Controller)('usuario'),
     __metadata("design:paramtypes", [usuario_service_1.UsuarioService])

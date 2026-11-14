@@ -1,4 +1,4 @@
-import { IsString, IsOptional, IsEmail, MaxLength, MinLength, IsEnum } from "class-validator";
+import { IsString, IsOptional, IsEmail, MaxLength, MinLength, IsEnum, IsBoolean } from "class-validator";
 import { funcaoUsuario } from "src/generated/prisma/enums";
 import { periodos } from "src/generated/prisma/enums";
 
@@ -28,4 +28,8 @@ export class AtualizarUsuarioDto {
     @IsEnum(periodos)
     @IsOptional()
     periodo?: periodos;
+
+    @IsBoolean()
+    @IsOptional()
+    isAdmin?: boolean
 }

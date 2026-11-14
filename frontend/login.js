@@ -31,6 +31,7 @@ if (formulario) {
             window.location.href = 'index.html';
         } catch (error) {
             console.error('Erro capturado no catch:', error);
+            alert(error instanceof Error ? error.message : 'Não foi possível realizar o login.');
         }
     });
 }

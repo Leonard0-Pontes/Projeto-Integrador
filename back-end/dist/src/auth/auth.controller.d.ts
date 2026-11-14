@@ -1,14 +1,17 @@
-import { UsuarioAutenticado } from '../usuario/usuario.service';
+import { UsuarioAutenticado, UsuarioJwt } from '../usuario/usuario.service';
 import { AuthService } from './auth.service';
-type RequisicaoAutenticada = {
+type RequisicaoLogin = {
     user: UsuarioAutenticado;
+};
+type RequisicaoJwt = {
+    user: UsuarioJwt;
 };
 export declare class AuthController {
     private readonly authService;
     constructor(authService: AuthService);
-    login(request: RequisicaoAutenticada): {
+    login(request: RequisicaoLogin): {
         accessToken: string;
     };
-    perfil(request: RequisicaoAutenticada): UsuarioAutenticado;
+    perfil(request: RequisicaoJwt): UsuarioJwt;
 }
 export {};

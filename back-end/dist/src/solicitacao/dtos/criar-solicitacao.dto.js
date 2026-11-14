@@ -11,17 +11,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CriarSolicitacaoDto = void 0;
 const class_validator_1 = require("class-validator");
+const class_transformer_1 = require("class-transformer");
 const enums_1 = require("../../generated/prisma/enums");
 class CriarSolicitacaoDto {
+    disciplina_id;
     assunto;
     descricao;
     data_preferida;
     horario_preferido;
     modalidade_preferida;
     local_preferido;
-    status;
 }
 exports.CriarSolicitacaoDto = CriarSolicitacaoDto;
+__decorate([
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsInt)(),
+    (0, class_validator_1.Min)(1),
+    __metadata("design:type", Number)
+], CriarSolicitacaoDto.prototype, "disciplina_id", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
@@ -57,9 +64,4 @@ __decorate([
     (0, class_validator_1.MaxLength)(100),
     __metadata("design:type", String)
 ], CriarSolicitacaoDto.prototype, "local_preferido", void 0);
-__decorate([
-    (0, class_validator_1.IsEnum)(enums_1.statusSolicit),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], CriarSolicitacaoDto.prototype, "status", void 0);
 //# sourceMappingURL=criar-solicitacao.dto.js.map
