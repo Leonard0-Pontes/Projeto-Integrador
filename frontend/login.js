@@ -24,7 +24,7 @@ if (formulario) {
             }
 
             const data = await response.json();
-            console.log('Dados recebidos da API:', data); // 
+            console.log('Os dados foram recebidos da API.'); // 
 
             sessionStorage.setItem('token', data.accessToken);
 

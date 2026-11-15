@@ -17,7 +17,11 @@ const common_1 = require("@nestjs/common");
 const usuario_service_1 = require("./usuario.service");
 const criar_usuario_dto_1 = require("./dtos/criar-usuario.dto");
 const jwt_auth_guard_1 = require("../auth/guards/jwt-auth.guard");
+const roles_guard_1 = require("../auth/guards/roles.guard");
+const roles_decorator_1 = require("../auth/decorators/roles.decorator");
 const admin_guard_1 = require("../auth/guards/admin.guard");
+const enums_1 = require("../generated/prisma/enums");
+const adicionar_disciplina_dto_1 = require("./dtos/adicionar-disciplina.dto");
 let UsuarioController = class UsuarioController {
     usuariosService;
     constructor(usuariosService) {
@@ -25,6 +29,18 @@ let UsuarioController = class UsuarioController {
     }
     criarUsuario(body) {
         return this.usuariosService.criarNovoUsuario(body);
+    }
+    buscarMeuPerfil(request) {
+        return this.usuariosService.buscarMeuPerfil(request.user.id);
+    }
+    listarMinhasDisciplinas(request) {
+        return this.usuariosService.listarDisciplinas(request.user.id, request.user.funcao);
+    }
+    adicionarDisciplina(body, request) {
+        return this.usuariosService.adicionarDisciplina(request.user.id, request.user.funcao, body.disciplina_id);
+    }
+    removerDisciplina(disciplinaId, request) {
+        return this.usuariosService.removerDisciplina(request.user.id, request.user.funcao, disciplinaId);
     }
     tornarAdmin(id) {
         return this.usuariosService.tornarAdmin(id);
@@ -44,6 +60,44 @@ __decorate([
     __metadata("design:paramtypes", [criar_usuario_dto_1.CriarUsuarioDto]),
     __metadata("design:returntype", void 0)
 ], UsuarioController.prototype, "criarUsuario", null);
+__decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
+    (0, roles_decorator_1.Roles)(enums_1.funcaoUsuario.Aluno, enums_1.funcaoUsuario.Monitor),
+    (0, common_1.Get)('me'),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], UsuarioController.prototype, "buscarMeuPerfil", null);
+__decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
+    (0, roles_decorator_1.Roles)(enums_1.funcaoUsuario.Aluno, enums_1.funcaoUsuario.Monitor),
+    (0, common_1.Get)('me/disciplinas'),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], UsuarioController.prototype, "listarMinhasDisciplinas", null);
+__decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
+    (0, roles_decorator_1.Roles)(enums_1.funcaoUsuario.Aluno, enums_1.funcaoUsuario.Monitor),
+    (0, common_1.Post)('me/disciplinas'),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adicionar_disciplina_dto_1.AdicionarDisciplinaDto, Object]),
+    __metadata("design:returntype", void 0)
+], UsuarioController.prototype, "adicionarDisciplina", null);
+__decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
+    (0, roles_decorator_1.Roles)(enums_1.funcaoUsuario.Aluno, enums_1.funcaoUsuario.Monitor),
+    (0, common_1.Delete)('me/disciplinas/:disciplinaId'),
+    __param(0, (0, common_1.Param)('disciplinaId', common_1.ParseIntPipe)),
+    __param(1, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Object]),
+    __metadata("design:returntype", void 0)
+], UsuarioController.prototype, "removerDisciplina", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, admin_guard_1.AdminGuard),
     (0, common_1.Patch)(':id/admin'),

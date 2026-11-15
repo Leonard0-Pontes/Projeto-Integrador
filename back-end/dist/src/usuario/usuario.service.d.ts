@@ -1,6 +1,7 @@
 import { CriarUsuarioDto } from './dtos/criar-usuario.dto';
 import { PrismaService } from "../prisma/prisma.service";
 import { UsuarioModel } from "../generated/prisma/models";
+import { funcaoUsuario } from "../generated/prisma/client";
 export type UsuarioAutenticado = Omit<UsuarioModel, 'senha_hash'>;
 export type UsuarioJwt = Pick<UsuarioModel, 'id' | 'nome' | 'email' | 'funcao' | 'curso' | 'periodo'>;
 export declare class UsuarioService {
@@ -13,7 +14,7 @@ export declare class UsuarioService {
         atualizado_em: Date;
         id: number;
         email: string;
-        funcao: import("src/generated/prisma/client").funcaoUsuario;
+        funcao: funcaoUsuario;
         curso: string;
         periodo: import("src/generated/prisma/client").periodos;
         is_admin: boolean;
@@ -26,7 +27,7 @@ export declare class UsuarioService {
         id: number;
         email: string;
         senha_hash: string;
-        funcao: import("src/generated/prisma/client").funcaoUsuario;
+        funcao: funcaoUsuario;
         curso: string;
         periodo: import("src/generated/prisma/client").periodos;
         is_admin: boolean;
@@ -38,10 +39,31 @@ export declare class UsuarioService {
         atualizado_em: Date;
         id: number;
         email: string;
-        funcao: import("src/generated/prisma/client").funcaoUsuario;
+        funcao: funcaoUsuario;
         curso: string;
         periodo: import("src/generated/prisma/client").periodos;
         is_admin: boolean;
+    }>;
+    buscarMeuPerfil(id: number): Promise<{
+        nome: string;
+        id: number;
+        email: string;
+        funcao: funcaoUsuario;
+        curso: string;
+        periodo: import("src/generated/prisma/client").periodos;
+    }>;
+    listarDisciplinas(usuarioId: number, funcao: funcaoUsuario): Promise<{
+        nome: string;
+        codigo: string;
+        id: number;
+    }[]>;
+    adicionarDisciplina(usuarioId: number, funcao: funcaoUsuario, disciplinaId: number): Promise<{
+        nome: string;
+        codigo: string;
+        id: number;
+    }>;
+    removerDisciplina(usuarioId: number, funcao: funcaoUsuario, disciplinaId: number): Promise<{
+        disciplina_id: number;
     }>;
     criarNovoUsuario(dados: CriarUsuarioDto): Promise<{
         nome: string;
@@ -50,7 +72,7 @@ export declare class UsuarioService {
         atualizado_em: Date;
         id: number;
         email: string;
-        funcao: import("src/generated/prisma/client").funcaoUsuario;
+        funcao: funcaoUsuario;
         curso: string;
         periodo: import("src/generated/prisma/client").periodos;
         is_admin: boolean;

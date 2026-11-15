@@ -32,6 +32,7 @@ __decorate([
 __decorate([
     (0, class_validator_1.IsEmail)(),
     (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.MaxLength)(100),
     __metadata("design:type", String)
 ], CriarUsuarioDto.prototype, "email", void 0);
 __decorate([

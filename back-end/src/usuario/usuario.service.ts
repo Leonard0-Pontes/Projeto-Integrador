@@ -1,9 +1,9 @@
-import { Injectable, ConflictException, NotFoundException } from '@nestjs/common';
+import { Injectable, ConflictException, NotFoundException, BadRequestException } from '@nestjs/common';
 import { CriarUsuarioDto } from './dtos/criar-usuario.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { UsuarioModel } from 'src/generated/prisma/models';
 import * as bcrypt from 'bcrypt'
-import { Prisma } from 'src/generated/prisma/client';
+import { funcaoUsuario, Prisma } from 'src/generated/prisma/client';
 
 export type UsuarioAutenticado = Omit<UsuarioModel, 'senha_hash'>;
 export type UsuarioJwt = Pick<UsuarioModel, 'id' | 'nome' | 'email' | 'funcao' | 'curso' | 'periodo'>
@@ -57,6 +57,110 @@ export class UsuarioService {
         }
 
         return usuario;
+    }
+
+    async buscarMeuPerfil(id: number) {
+        const usuario = await this.prisma.usuario.findUnique({
+            where: { id },
+            select: {
+                id: true,
+                nome: true,
+                email: true,
+                funcao: true,
+                curso: true,
+                periodo: true,
+            },
+        });
+
+        if (!usuario) {
+            throw new NotFoundException('Usuário não encontrado.');
+        }
+
+        return usuario;
+    }
+
+    async listarDisciplinas(usuarioId: number, funcao: funcaoUsuario) {
+        const vinculos = await this.prisma.usuario_Disciplina.findMany({
+            where: { usuario_id: usuarioId, funcao },
+            select: {
+                disciplina: {
+                    select: { id: true, nome: true, codigo: true },
+                },
+            },
+            orderBy: { disciplina_id: 'asc' },
+        });
+
+        return vinculos.map(({ disciplina }) => disciplina);
+    }
+
+    async adicionarDisciplina(
+        usuarioId: number,
+        funcao: funcaoUsuario,
+        disciplinaId: number,
+    ) {
+        const disciplina = await this.prisma.disciplinas.findFirst({
+            where: { id: disciplinaId, ativo: true },
+            select: { id: true },
+        });
+
+        if (!disciplina) {
+            throw new NotFoundException('Disciplina não encontrada ou inativa.');
+        }
+
+        try {
+            const vinculo = await this.prisma.usuario_Disciplina.create({
+                data: {
+                    usuario_id: usuarioId,
+                    disciplina_id: disciplina.id,
+                    funcao,
+                    criado_em: new Date(),
+                },
+                select: {
+                    disciplina: {
+                        select: { id: true, nome: true, codigo: true },
+                    },
+                },
+            });
+
+            return vinculo.disciplina;
+        } catch (error) {
+            if (error instanceof Prisma.PrismaClientKnownRequestError) {
+                if (error.code === 'P2002') {
+                    throw new ConflictException(
+                        'Esta disciplina já está na sua lista.',
+                    );
+                }
+                if (error.code === 'P2003') {
+                    throw new BadRequestException(
+                        'Usuário ou disciplina não encontrado.',
+                    );
+                }
+            }
+
+            throw error;
+        }
+    }
+
+    async removerDisciplina(
+        usuarioId: number,
+        funcao: funcaoUsuario,
+        disciplinaId: number,
+    ) {
+        const resultado = await this.prisma.usuario_Disciplina.deleteMany({
+            where: {
+                usuario_id: usuarioId,
+                disciplina_id: disciplinaId,
+                funcao,
+            },
+        });
+
+        if (resultado.count === 0) {
+            throw new NotFoundException(
+                'Disciplina não encontrada na sua lista.',
+            );
+        }
+
+        return { disciplina_id: disciplinaId };
     }
 
     async criarNovoUsuario(dados: CriarUsuarioDto) {

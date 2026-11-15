@@ -62,9 +62,9 @@ let SolicitacaoService = class SolicitacaoService {
             throw error;
         }
     }
-    async listar(userId) {
+    async listar(userId, funcao) {
         return this.prisma.solicitacoes.findMany({
-            where: { aluno_id: userId },
+            where: funcao === client_1.funcaoUsuario.Monitor ? {} : { aluno_id: userId },
             include: {
                 aluno: {
                     select: { id: true, nome: true, email: true },
@@ -76,9 +76,9 @@ let SolicitacaoService = class SolicitacaoService {
             orderBy: { id: 'asc' },
         });
     }
-    async buscarPorId(id, userId) {
+    async buscarPorId(id, userId, funcao) {
         const solicitacao = await this.prisma.solicitacoes.findFirst({
-            where: { id, aluno_id: userId },
+            where: funcao === client_1.funcaoUsuario.Monitor ? { id } : { id, aluno_id: userId },
             include: {
                 aluno: {
                     select: { id: true, nome: true, email: true },

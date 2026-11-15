@@ -11,6 +11,7 @@ export class CriarUsuarioDto {
 
     @IsEmail()
     @IsNotEmpty()
+    @MaxLength(100)
     email!: string;
 
     @IsString()

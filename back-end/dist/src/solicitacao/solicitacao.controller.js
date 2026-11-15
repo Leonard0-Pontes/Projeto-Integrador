@@ -29,10 +29,10 @@ let SolicitacaoController = class SolicitacaoController {
         return this.solicitacoesService.criar(body, request.user.id);
     }
     listar(request) {
-        return this.solicitacoesService.listar(request.user.id);
+        return this.solicitacoesService.listar(request.user.id, request.user.funcao);
     }
     buscarPorId(id, request) {
-        return this.solicitacoesService.buscarPorId(id, request.user.id);
+        return this.solicitacoesService.buscarPorId(id, request.user.id, request.user.funcao);
     }
 };
 exports.SolicitacaoController = SolicitacaoController;

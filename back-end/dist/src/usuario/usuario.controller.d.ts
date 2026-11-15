@@ -1,5 +1,13 @@
 import { UsuarioService } from './usuario.service';
 import { CriarUsuarioDto } from './dtos/criar-usuario.dto';
+import { funcaoUsuario } from "../generated/prisma/enums";
+import { AdicionarDisciplinaDto } from './dtos/adicionar-disciplina.dto';
+type RequisicaoAutenticada = {
+    user: {
+        id: number;
+        funcao: funcaoUsuario;
+    };
+};
 export declare class UsuarioController {
     private readonly usuariosService;
     constructor(usuariosService: UsuarioService);
@@ -10,10 +18,31 @@ export declare class UsuarioController {
         atualizado_em: Date;
         id: number;
         email: string;
-        funcao: import("../generated/prisma/enums").funcaoUsuario;
+        funcao: funcaoUsuario;
         curso: string;
-        periodo: import("../generated/prisma/enums").periodos;
+        periodo: import("src/generated/prisma/enums").periodos;
         is_admin: boolean;
+    }>;
+    buscarMeuPerfil(request: RequisicaoAutenticada): Promise<{
+        nome: string;
+        id: number;
+        email: string;
+        funcao: funcaoUsuario;
+        curso: string;
+        periodo: import("src/generated/prisma/enums").periodos;
+    }>;
+    listarMinhasDisciplinas(request: RequisicaoAutenticada): Promise<{
+        nome: string;
+        codigo: string;
+        id: number;
+    }[]>;
+    adicionarDisciplina(body: AdicionarDisciplinaDto, request: RequisicaoAutenticada): Promise<{
+        nome: string;
+        codigo: string;
+        id: number;
+    }>;
+    removerDisciplina(disciplinaId: number, request: RequisicaoAutenticada): Promise<{
+        disciplina_id: number;
     }>;
     tornarAdmin(id: number): Promise<{
         nome: string;
@@ -29,9 +58,9 @@ export declare class UsuarioController {
         atualizado_em: Date;
         id: number;
         email: string;
-        funcao: import("../generated/prisma/enums").funcaoUsuario;
+        funcao: funcaoUsuario;
         curso: string;
-        periodo: import("../generated/prisma/enums").periodos;
+        periodo: import("src/generated/prisma/enums").periodos;
         is_admin: boolean;
     }[]>;
     buscarUsuario(email: string): Promise<{
@@ -41,9 +70,10 @@ export declare class UsuarioController {
         atualizado_em: Date;
         id: number;
         email: string;
-        funcao: import("../generated/prisma/enums").funcaoUsuario;
+        funcao: funcaoUsuario;
         curso: string;
-        periodo: import("../generated/prisma/enums").periodos;
+        periodo: import("src/generated/prisma/enums").periodos;
         is_admin: boolean;
     }>;
 }
+export {};

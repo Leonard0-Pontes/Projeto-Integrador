@@ -94,6 +94,84 @@ let UsuarioService = class UsuarioService {
         }
         return usuario;
     }
+    async buscarMeuPerfil(id) {
+        const usuario = await this.prisma.usuario.findUnique({
+            where: { id },
+            select: {
+                id: true,
+                nome: true,
+                email: true,
+                funcao: true,
+                curso: true,
+                periodo: true,
+            },
+        });
+        if (!usuario) {
+            throw new common_1.NotFoundException('Usuário não encontrado.');
+        }
+        return usuario;
+    }
+    async listarDisciplinas(usuarioId, funcao) {
+        const vinculos = await this.prisma.usuario_Disciplina.findMany({
+            where: { usuario_id: usuarioId, funcao },
+            select: {
+                disciplina: {
+                    select: { id: true, nome: true, codigo: true },
+                },
+            },
+            orderBy: { disciplina_id: 'asc' },
+        });
+        return vinculos.map(({ disciplina }) => disciplina);
+    }
+    async adicionarDisciplina(usuarioId, funcao, disciplinaId) {
+        const disciplina = await this.prisma.disciplinas.findFirst({
+            where: { id: disciplinaId, ativo: true },
+            select: { id: true },
+        });
+        if (!disciplina) {
+            throw new common_1.NotFoundException('Disciplina não encontrada ou inativa.');
+        }
+        try {
+            const vinculo = await this.prisma.usuario_Disciplina.create({
+                data: {
+                    usuario_id: usuarioId,
+                    disciplina_id: disciplina.id,
+                    funcao,
+                    criado_em: new Date(),
+                },
+                select: {
+                    disciplina: {
+                        select: { id: true, nome: true, codigo: true },
+                    },
+                },
+            });
+            return vinculo.disciplina;
+        }
+        catch (error) {
+            if (error instanceof client_1.Prisma.PrismaClientKnownRequestError) {
+                if (error.code === 'P2002') {
+                    throw new common_1.ConflictException('Esta disciplina já está na sua lista.');
+                }
+                if (error.code === 'P2003') {
+                    throw new common_1.BadRequestException('Usuário ou disciplina não encontrado.');
+                }
+            }
+            throw error;
+        }
+    }
+    async removerDisciplina(usuarioId, funcao, disciplinaId) {
+        const resultado = await this.prisma.usuario_Disciplina.deleteMany({
+            where: {
+                usuario_id: usuarioId,
+                disciplina_id: disciplinaId,
+                funcao,
+            },
+        });
+        if (resultado.count === 0) {
+            throw new common_1.NotFoundException('Disciplina não encontrada na sua lista.');
+        }
+        return { disciplina_id: disciplinaId };
+    }
     async criarNovoUsuario(dados) {
         const senhaHash = await bcrypt.hash(dados.senha, 10);
         const agora = new Date();

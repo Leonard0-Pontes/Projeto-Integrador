@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { CriarSolicitacaoDto } from './dtos/criar-solicitacao.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { Prisma } from 'src/generated/prisma/client';
+import { funcaoUsuario, Prisma } from 'src/generated/prisma/client';
 
 function paraData(data: string): Date {
   const [ano, mes, dia] = data.split('-').map(Number);
@@ -56,9 +56,9 @@ export class SolicitacaoService {
     }
   }
 
-  async listar(userId: number) {
+  async listar(userId: number, funcao: funcaoUsuario) {
     return this.prisma.solicitacoes.findMany({
-      where: { aluno_id: userId },
+      where: funcao === funcaoUsuario.Monitor ? {} : { aluno_id: userId },
       include: {
         aluno: {
           select: { id: true, nome: true, email: true },
@@ -71,9 +71,9 @@ export class SolicitacaoService {
     });
   }
 
-  async buscarPorId(id: number, userId: number) {
+  async buscarPorId(id: number, userId: number, funcao: funcaoUsuario) {
     const solicitacao = await this.prisma.solicitacoes.findFirst({
-      where: { id, aluno_id: userId },
+      where: funcao === funcaoUsuario.Monitor ? { id } : { id, aluno_id: userId },
       include: {
         aluno: {
           select: { id: true, nome: true, email: true },

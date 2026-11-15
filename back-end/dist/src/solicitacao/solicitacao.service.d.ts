@@ -1,5 +1,6 @@
 import { CriarSolicitacaoDto } from './dtos/criar-solicitacao.dto';
 import { PrismaService } from "../prisma/prisma.service";
+import { funcaoUsuario } from "../generated/prisma/client";
 export declare class SolicitacaoService {
     private readonly prisma;
     constructor(prisma: PrismaService);
@@ -17,7 +18,7 @@ export declare class SolicitacaoService {
         status: import("src/generated/prisma/client").statusSolicit;
         aluno_id: number;
     }>;
-    listar(userId: number): Promise<({
+    listar(userId: number, funcao: funcaoUsuario): Promise<({
         disciplina: {
             nome: string;
             codigo: string;
@@ -42,7 +43,7 @@ export declare class SolicitacaoService {
         status: import("src/generated/prisma/client").statusSolicit;
         aluno_id: number;
     })[]>;
-    buscarPorId(id: number, userId: number): Promise<{
+    buscarPorId(id: number, userId: number, funcao: funcaoUsuario): Promise<{
         disciplina: {
             nome: string;
             codigo: string;

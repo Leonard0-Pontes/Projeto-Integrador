@@ -11,6 +11,7 @@ export class AtualizarUsuarioDto {
 
     @IsEmail()
     @IsOptional()
+    @MaxLength(100)
     email?: string;
 
     @IsString()

@@ -27,13 +27,13 @@ export class SolicitacaoController {
     @Roles(funcaoUsuario.Aluno, funcaoUsuario.Monitor)
     @Get()
     listar(@Req() request: RequisicaoAutenticada) {
-        return this.solicitacoesService.listar(request.user.id);
+        return this.solicitacoesService.listar(request.user.id, request.user.funcao);
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
     @Roles(funcaoUsuario.Aluno, funcaoUsuario.Monitor)
     @Get(':id')
     buscarPorId(@Param('id', ParseIntPipe) id: number, @Req() request: RequisicaoAutenticada) {
-        return this.solicitacoesService.buscarPorId(id, request.user.id);
+        return this.solicitacoesService.buscarPorId(id, request.user.id, request.user.funcao);
     }
 }

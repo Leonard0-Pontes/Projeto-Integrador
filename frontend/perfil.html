@@ -42,39 +42,59 @@
         <main class="row justify-content-center my-4">
             <div class="col-11">
                 <div class="card">
-                    <div class="row">
-                        <div class="col my-4 ms-4">
-                            <img style="max-height: 80px;"
-                                src="https://i.pinimg.com/236x/23/40/8e/23408e565fc3f43454636fec27572d1f.jpg"
-                                alt="Foto de perfil" class="image-fluid rounded-circle fotoPerfil">
+                    <div class="row align-items-center">
+                        <div class="col-auto my-4 ms-4">
+                            <div id="avatar-inicial"
+                                class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center fw-bold fs-2"
+                                style="width: 80px; height: 80px;" aria-hidden="true"></div>
                         </div>
-                        <div class="col-10 my-2">
-                            <h5 class="card-title fw-bold"><span id="nome-usuario">Placeholder</span></h5><br>
-                            <h6 class="card-subtitle">Nome do Curso</h6>
+                        <div class="col my-2">
+                            <h5 class="card-title fw-bold" id="nome-usuario"></h5>
+                            <p class="card-subtitle mb-0" id="funcao-usuario"></p>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-12 col-lg-5">
                         <h4 class="my-4">Dados do Usuário:</h4>
                         <div class="card">
                             <div class="card-body">
-                                <p class="card-text"><strong>E-mail:</strong>
-                                    <span id="email-usuario">Placeholder</span><br><strong>Matrícula:</strong>
-                                    000000001<br><strong>Período:</strong>
-                                    Xº Período</p>
+                                <p class="card-text mb-2"><strong>E-mail:</strong>
+                                    <span id="email-usuario"></span></p>
+                                <p class="card-text mb-2"><strong>Curso:</strong>
+                                    <span id="curso-usuario"></span></p>
+                                <p class="card-text mb-0"><strong>Período:</strong>
+                                    <span id="periodo-usuario"></span></p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <h4 class="my-4">Disciplinas Matriculadas:</h4>
-                        <div class="card">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Matemática</li>
-                                <li class="list-group-item">Inglês</li>
-                                <li class="list-group-item">Redes</li>
-                            </ul>
+                    <div class="col-12 col-lg-7">
+                        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 my-4">
+                            <h4 class="mb-0" id="titulo-disciplinas">Disciplinas:</h4>
+                            <button type="button" class="btn btn-success" id="btn-adicionar-disciplina">
+                                Adicionar disciplina
+                            </button>
                         </div>
+                        <div class="card">
+                            <form id="form-adicionar-disciplina" class="card-body d-none">
+                                <label for="disciplina-select" class="form-label">Escolha uma disciplina:</label>
+                                <div class="d-flex flex-column flex-sm-row gap-2">
+                                    <select id="disciplina-select" class="form-select" required>
+                                        <option value="" disabled selected>Carregando disciplinas...</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-primary text-nowrap" id="btn-confirmar-disciplina">
+                                        Adicionar
+                                    </button>
+                                    <button type="button" class="btn btn-outline-secondary" id="btn-cancelar-disciplina">
+                                        Cancelar
+                                    </button>
+                                </div>
+                            </form>
+                            <ul class="list-group list-group-flush" id="lista-disciplinas"></ul>
+                            <div id="mensagem-perfil" class="alert d-none m-3 mb-0" role="status"
+                                aria-live="polite"></div>
+                        </div>
+                        <div class="small text-muted mt-2" id="ajuda-disciplinas"></div>
                     </div>
                 </div>
             </div>
