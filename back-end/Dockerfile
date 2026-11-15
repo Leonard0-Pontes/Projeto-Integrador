@@ -5,6 +5,7 @@ WORKDIR /app
 COPY package*.json ./
 
 RUN npm install
+RUN prisma generate
 
 COPY . .
 
@@ -16,4 +17,4 @@ EXPOSE 3000
 
 #para produçao 
 
-CMD ["npm", "run", "start:prod"]
+CMD ["/bin/sh", "-c", "npx prisma migrate deploy && npm run start:prod"]
