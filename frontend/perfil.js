@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://pi-soma-backend.onrender.com';
 
 document.addEventListener('DOMContentLoaded', async () => {
     const token = window.auth.exigirToken();
