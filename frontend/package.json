@@ -1,0 +1,13 @@
+{
+    "name": "projeto-integrador-frontend",
+    "version": "1.0.0",
+    "private": true,
+    "description": "Frontend estático do Projeto Integrador",
+    "scripts": {
+        "dev": "http-server . -p 5173"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "http-server": "^14.1.1"
+    }
+}

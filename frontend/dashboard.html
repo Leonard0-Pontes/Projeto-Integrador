@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - MentorCon</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css?v=6">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <header class="row">
+            <nav class="navbar navbar-expand-lg bg-success-subtle p-4" aria-label="Navegação principal">
+                <div class="container-fluid">
+                    <span class="navbar-brand fw-bold">MENTORCON</span>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menu">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto fw-semibold">
+                            <li class="nav-item"><a href="./index.html" class="nav-link">Central</a></li>
+                            <li class="nav-item"><a href="./perfil.html" class="nav-link">Meu Perfil</a></li>
+                            <li class="nav-item"><a href="./monitorias.html" class="nav-link">Monitorias</a></li>
+                            <li class="nav-item"><a href="./dashboard.html" class="nav-link active"
+                                    aria-current="page">Dashboard</a></li>
+                            <li class="nav-item"><a href="./login.html" class="nav-link logout">Sair</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main class="row justify-content-center my-4">
+            <div class="col-11">
+                <section aria-labelledby="titulo-visao-geral">
+                    <div class="d-flex flex-wrap align-items-start justify-content-between gap-3">
+                        <h3 id="titulo-visao-geral" class="mb-3">Visão Geral</h3>
+                        <button type="button" class="btn btn-primary px-4 mb-3" data-bs-toggle="modal"
+                            data-bs-target="#modalRelatorios">Relatórios</button>
+                    </div>
+                    <!-- Dados demonstrativos, ainda sem integração com o backend. -->
+                    <div class="row row-cols-1 row-cols-md-3 g-3 g-lg-4">
+                        <div class="col">
+                            <article class="card bg-transparent h-100 p-2 py-3">
+                                <h2 class="fs-6 fw-normal lh-sm mb-0">Solicitações Pendentes</h2>
+                                <p class="fs-3 fw-bold mb-0">05</p>
+                            </article>
+                        </div>
+                        <div class="col">
+                            <article class="card bg-transparent h-100 p-2 py-3">
+                                <h2 class="fs-6 fw-normal lh-sm mb-0">Monitorias Hoje</h2>
+                                <p class="fs-3 fw-bold mb-0">12</p>
+                            </article>
+                        </div>
+                        <div class="col">
+                            <article class="card bg-transparent h-100 p-2 py-3">
+                                <h2 class="fs-6 fw-normal lh-sm mb-0">Monitores Ativos</h2>
+                                <p class="fs-3 fw-bold mb-0">48</p>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mt-1">
+                        <div class="col-12 col-lg-8">
+                            <section class="card bg-transparent h-100 p-2" aria-labelledby="titulo-grafico">
+                                <h2 id="titulo-grafico" class="fs-6 fw-bold lh-sm mb-2">Gráficos de Atendimentos</h2>
+                                <div class="dashboard-chart d-flex align-items-end gap-2 border-bottom border-light px-1"
+                                    role="img"
+                                    aria-label="Gráfico ilustrativo de barras com dez períodos de atendimentos. Os dados são demonstrativos.">
+                                    <span class="bg-secondary flex-fill" style="height: 67%;"></span>
+                                    <span class="bg-secondary flex-fill" style="height: 40%;"></span>
+                                    <span class="bg-secondary flex-fill" style="height: 85%;"></span>
+                                    <span class="bg-secondary flex-fill" style="height: 36%;"></span>
+                                    <span class="bg-secondary flex-fill" style="height: 62%;"></span>
+                                    <span class="bg-secondary flex-fill" style="height: 51%;"></span>
+                                    <span class="bg-secondary flex-fill" style="height: 67%;"></span>
+                                    <span class="bg-secondary flex-fill" style="height: 100%;"></span>
+                                    <span class="bg-secondary flex-fill" style="height: 80%;"></span>
+                                    <span class="bg-secondary flex-fill" style="height: 62%;"></span>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <section class="card bg-transparent h-100 p-2" aria-labelledby="titulo-solicitacoes">
+                                <h2 id="titulo-solicitacoes" class="fs-6 fw-bold lh-sm mb-2">Últimas Solicitações</h2>
+                                <div id="ultimas-solicitacoes" aria-label="Lista de últimas solicitações"></div>
+                            </section>
+                        </div>
+                    </div>
+                    <p class="text-body-secondary small mt-3 mb-0">Prévia do layout: informações ilustrativas, ainda sem
+                        integração com o backend.</p>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal fade" id="modalRelatorios" tabindex="-1" aria-labelledby="titulo-modal-relatorios"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="titulo-modal-relatorios">Relatórios</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-0">A área de relatórios está preparada visualmente. A consulta e a exportação de dados
+                        serão implementadas na etapa de integração com o backend.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
