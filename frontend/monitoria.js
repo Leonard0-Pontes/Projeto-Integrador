@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://pi-soma-backend.onrender.com';
 const token = sessionStorage.getItem('token');
 
 if (!token) {
