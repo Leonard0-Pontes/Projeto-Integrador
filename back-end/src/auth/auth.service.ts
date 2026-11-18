@@ -14,7 +14,7 @@ export class AuthService {
   ) {}
 
   async validarUsuario(email: string, senha: string) {
-    const usuario = await this.usuarioService.buscarUsuario(email);
+    const usuario = await this.usuarioService.buscarUsuarioLogin(email);
 
     if (!usuario) {
       return null;

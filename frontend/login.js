@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://pi-soma-backend.onrender.com';
 
 const formulario = document.querySelector('#loginForm');
 
@@ -24,13 +24,14 @@ if (formulario) {
             }
 
             const data = await response.json();
-            console.log('Dados recebidos da API:', data); // 
+            console.log('Os dados foram recebidos da API.'); // 
 
             sessionStorage.setItem('token', data.accessToken);
 
             window.location.href = 'index.html';
         } catch (error) {
             console.error('Erro capturado no catch:', error);
+            alert(error instanceof Error ? error.message : 'Não foi possível realizar o login.');
         }
     });
 }

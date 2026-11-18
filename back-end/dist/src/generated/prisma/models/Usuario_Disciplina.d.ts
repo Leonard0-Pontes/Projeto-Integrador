@@ -139,6 +139,7 @@ export type Usuario_DisciplinaOrderByWithRelationInput = {
 };
 export type Usuario_DisciplinaWhereUniqueInput = Prisma.AtLeast<{
     id?: number;
+    usuario_id_disciplina_id?: Prisma.Usuario_DisciplinaUsuario_idDisciplina_idCompoundUniqueInput;
     AND?: Prisma.Usuario_DisciplinaWhereInput | Prisma.Usuario_DisciplinaWhereInput[];
     OR?: Prisma.Usuario_DisciplinaWhereInput[];
     NOT?: Prisma.Usuario_DisciplinaWhereInput | Prisma.Usuario_DisciplinaWhereInput[];
@@ -148,7 +149,7 @@ export type Usuario_DisciplinaWhereUniqueInput = Prisma.AtLeast<{
     criado_em?: Prisma.DateTimeFilter<"Usuario_Disciplina"> | Date | string;
     usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>;
     disciplina?: Prisma.XOR<Prisma.DisciplinasScalarRelationFilter, Prisma.DisciplinasWhereInput>;
-}, "id">;
+}, "id" | "usuario_id_disciplina_id">;
 export type Usuario_DisciplinaOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
     usuario_id?: Prisma.SortOrder;
@@ -222,6 +223,10 @@ export type Usuario_DisciplinaListRelationFilter = {
 };
 export type Usuario_DisciplinaOrderByRelationAggregateInput = {
     _count?: Prisma.SortOrder;
+};
+export type Usuario_DisciplinaUsuario_idDisciplina_idCompoundUniqueInput = {
+    usuario_id: number;
+    disciplina_id: number;
 };
 export type Usuario_DisciplinaCountOrderByAggregateInput = {
     id?: Prisma.SortOrder;

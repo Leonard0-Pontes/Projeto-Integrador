@@ -20,6 +20,7 @@ class AtualizarUsuarioDto {
     funcao;
     curso;
     periodo;
+    isAdmin;
 }
 exports.AtualizarUsuarioDto = AtualizarUsuarioDto;
 __decorate([
@@ -32,6 +33,7 @@ __decorate([
 __decorate([
     (0, class_validator_1.IsEmail)(),
     (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.MaxLength)(100),
     __metadata("design:type", String)
 ], AtualizarUsuarioDto.prototype, "email", void 0);
 __decorate([
@@ -54,4 +56,9 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], AtualizarUsuarioDto.prototype, "periodo", void 0);
+__decorate([
+    (0, class_validator_1.IsBoolean)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Boolean)
+], AtualizarUsuarioDto.prototype, "isAdmin", void 0);
 //# sourceMappingURL=atualizar-usuario.dto.js.map

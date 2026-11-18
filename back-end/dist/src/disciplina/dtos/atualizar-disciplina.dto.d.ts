@@ -1,4 +1,4 @@
-export declare class CriarDisciplinaDto {
+export declare class AtualizarDisciplinaDto {
     nome?: string;
     codigo?: string;
 }

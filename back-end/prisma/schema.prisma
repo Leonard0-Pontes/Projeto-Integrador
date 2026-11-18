@@ -115,4 +115,5 @@ model Usuario_Disciplina {
   disciplina Disciplinas @relation(fields: [disciplina_id], references: [id])
   funcao funcaoUsuario
   criado_em DateTime @db.Timestamptz()
+  @@unique([usuario_id, disciplina_id])
 }

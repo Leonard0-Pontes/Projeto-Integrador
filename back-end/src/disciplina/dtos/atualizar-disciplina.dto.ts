@@ -1,6 +1,6 @@
 import { IsString, IsOptional, MaxLength } from "class-validator";
 
-export class CriarDisciplinaDto {
+export class AtualizarDisciplinaDto {
     @IsString()
     @IsOptional()
     @MaxLength(100)

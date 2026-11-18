@@ -7,4 +7,5 @@ export declare class AtualizarUsuarioDto {
     funcao?: funcaoUsuario;
     curso?: string;
     periodo?: periodos;
+    isAdmin?: boolean;
 }

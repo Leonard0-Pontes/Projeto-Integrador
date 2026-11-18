@@ -5,13 +5,49 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DisciplinaController = void 0;
 const common_1 = require("@nestjs/common");
+const disciplina_service_1 = require("./disciplina.service");
+const criar_disciplina_dto_1 = require("./dtos/criar-disciplina.dto");
+const jwt_auth_guard_1 = require("../auth/guards/jwt-auth.guard");
+const admin_guard_1 = require("../auth/guards/admin.guard");
 let DisciplinaController = class DisciplinaController {
+    disciplinaService;
+    constructor(disciplinaService) {
+        this.disciplinaService = disciplinaService;
+    }
+    listar() {
+        return this.disciplinaService.listar();
+    }
+    criar(body) {
+        return this.disciplinaService.criar(body);
+    }
 };
 exports.DisciplinaController = DisciplinaController;
+__decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], DisciplinaController.prototype, "listar", null);
+__decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, admin_guard_1.AdminGuard),
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [criar_disciplina_dto_1.CriarDisciplinaDto]),
+    __metadata("design:returntype", void 0)
+], DisciplinaController.prototype, "criar", null);
 exports.DisciplinaController = DisciplinaController = __decorate([
-    (0, common_1.Controller)('disciplina')
+    (0, common_1.Controller)('disciplina'),
+    __metadata("design:paramtypes", [disciplina_service_1.DisciplinaService])
 ], DisciplinaController);
 //# sourceMappingURL=disciplina.controller.js.map

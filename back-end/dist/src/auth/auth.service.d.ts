@@ -6,15 +6,15 @@ export declare class AuthService {
     constructor(usuarioService: UsuarioService, jwtService: JwtService);
     validarUsuario(email: string, senha: string): Promise<{
         nome: string;
+        ativo: boolean;
+        criado_em: Date;
+        atualizado_em: Date;
+        id: number;
         email: string;
         funcao: import("../generated/prisma/enums").funcaoUsuario;
         curso: string;
         periodo: import("../generated/prisma/enums").periodos;
-        id: number;
         is_admin: boolean;
-        ativo: boolean;
-        criado_em: Date;
-        atualizado_em: Date;
     } | null>;
     login(usuario: UsuarioAutenticado): {
         accessToken: string;

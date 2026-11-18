@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:24-alpine
 
 WORKDIR /app
 
@@ -8,12 +8,15 @@ RUN npm install
 
 COPY . .
 
+RUN DATABASE_URL_UNPOOLED="postgresql://user:password@localhost:5432/database" npx prisma generate
+RUN npm run build
+
 EXPOSE 3000
 
 #Para desenvolvimento
 
-CMD ["npm", "run", "start:dev"]
+#CMD ["npm", "run", "start:dev"]
 
-#para pruduçao 
+#para produçao 
 
-#CMD ["npm", "run", "start:prod"]
+CMD ["/bin/sh", "-c", "npx prisma migrate deploy && npm run start:prod"]

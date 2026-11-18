@@ -1,7 +1,13 @@
-import { IsString, IsMilitaryTime, IsDateString, IsNotEmpty, IsOptional, MaxLength, IsEnum } from "class-validator";
-import { modalidadePref, statusSolicit } from "src/generated/prisma/enums";
+import { IsString, IsMilitaryTime, IsDateString, IsNotEmpty, IsOptional, MaxLength, IsEnum, IsInt, Min } from "class-validator";
+import { Type } from "class-transformer";
+import { modalidadePref } from "src/generated/prisma/enums";
 
 export class CriarSolicitacaoDto {
+    @Type(() => Number)
+    @IsInt()
+    @Min(1)
+    disciplina_id!: number;
+
     @IsString()
     @IsNotEmpty()
     @MaxLength(100)
@@ -30,8 +36,4 @@ export class CriarSolicitacaoDto {
     @IsOptional()
     @MaxLength(100)
     local_preferido?: string
-
-    @IsEnum(statusSolicit)
-    @IsNotEmpty()
-    status!: statusSolicit
 }
