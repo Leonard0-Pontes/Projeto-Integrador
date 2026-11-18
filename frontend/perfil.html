@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt_BR" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário - SOMA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <header class="row">
+            <nav class="navbar navbar-expand-lg bg-success-subtle p-4">
+                <div class="container-fluid">
+                    <span class="navbar-brand fw-bold">SOMA</span>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbar-nav">
+                        <ul class="navbar-nav ms-auto fw-semibold">
+                            <li class="nav-item">
+                                <a href="./index.html" class="nav-link" id="btn-home">Central</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link active" id="btn-perfil">Meu Perfil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./solicitacao.html" class="nav-link" id="btn-mon">Solicitações</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./login.html" class="nav-link logout" id="btn-sair">Sair</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main class="row justify-content-center my-4">
+            <div class="col-11">
+                <div class="card">
+                    <div class="row align-items-center">
+                        <div class="col-auto my-4 ms-4">
+                            <div id="avatar-inicial"
+                                class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center fw-bold fs-2"
+                                style="width: 80px; height: 80px;" aria-hidden="true"></div>
+                        </div>
+                        <div class="col my-2">
+                            <h5 class="card-title fw-bold" id="nome-usuario"></h5>
+                            <p class="card-subtitle mb-0" id="funcao-usuario"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-5">
+                        <h4 class="my-4">Dados do Usuário:</h4>
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="card-text mb-2"><strong>E-mail:</strong>
+                                    <span id="email-usuario"></span></p>
+                                <p class="card-text mb-2"><strong>Curso:</strong>
+                                    <span id="curso-usuario"></span></p>
+                                <p class="card-text mb-0"><strong>Período:</strong>
+                                    <span id="periodo-usuario"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-7">
+                        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 my-4">
+                            <h4 class="mb-0" id="titulo-disciplinas">Disciplinas:</h4>
+                            <button type="button" class="btn btn-success" id="btn-adicionar-disciplina">
+                                Adicionar disciplina
+                            </button>
+                        </div>
+                        <div class="card">
+                            <form id="form-adicionar-disciplina" class="card-body d-none">
+                                <label for="disciplina-select" class="form-label">Escolha uma disciplina:</label>
+                                <div class="d-flex flex-column flex-sm-row gap-2">
+                                    <select id="disciplina-select" class="form-select" required>
+                                        <option value="" disabled selected>Carregando disciplinas...</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-primary text-nowrap" id="btn-confirmar-disciplina">
+                                        Adicionar
+                                    </button>
+                                    <button type="button" class="btn btn-outline-secondary" id="btn-cancelar-disciplina">
+                                        Cancelar
+                                    </button>
+                                </div>
+                            </form>
+                            <ul class="list-group list-group-flush" id="lista-disciplinas"></ul>
+                            <div id="mensagem-perfil" class="alert d-none m-3 mb-0" role="status"
+                                aria-live="polite"></div>
+                        </div>
+                        <div class="small text-muted mt-2" id="ajuda-disciplinas"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="./auth.js"></script>
+    <script src="./perfil.js"></script>
+</body>
+
+</html>
