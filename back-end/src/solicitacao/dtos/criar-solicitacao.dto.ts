@@ -1,9 +1,13 @@
-import { Transform } from "class-transformer";
-import { IsString, IsMilitaryTime, IsDateString, IsNotEmpty, IsOptional, IsIn, MaxLength } from "class-validator";
-
-export type StatusSolicitacao = 'pendente' | 'aceita' | 'concluida';
+import { IsString, IsMilitaryTime, IsDateString, IsNotEmpty, IsOptional, MaxLength, IsEnum, IsInt, Min } from "class-validator";
+import { Type } from "class-transformer";
+import { modalidadePref } from "src/generated/prisma/enums";
 
 export class CriarSolicitacaoDto {
+    @Type(() => Number)
+    @IsInt()
+    @Min(1)
+    disciplina_id!: number;
+
     @IsString()
     @IsNotEmpty()
     @MaxLength(100)
@@ -11,23 +15,25 @@ export class CriarSolicitacaoDto {
 
     @IsString()
     @IsOptional()
-    @MaxLength(300)
+    @MaxLength(500)
     descricao?: string
 
     @IsDateString()
+    @IsNotEmpty()
     @MaxLength(10)
     data_preferida!: string
 
     @IsString()
+    @IsNotEmpty()
     @IsMilitaryTime()
     horario_preferido!: string
 
-    @IsIn(['presencial', 'online'])
-    @IsOptional()
-    modalidade_preferida?: string
-
-    @IsIn(['pendente', 'aceita', 'concluida'])
+    @IsEnum(modalidadePref)
     @IsNotEmpty()
-    @Transform(({ value }) => value || 'pendente')
-    status: StatusSolicitacao = 'pendente'
+    modalidade_preferida!: modalidadePref
+
+    @IsString()
+    @IsOptional()
+    @MaxLength(100)
+    local_preferido?: string
 }

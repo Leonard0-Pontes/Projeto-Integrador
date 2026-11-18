@@ -1,29 +1,36 @@
-import { IsString, IsMilitaryTime, IsDateString, IsNotEmpty, IsOptional, IsIn, MaxLength, IsUrl } from "class-validator";
+import { IsString, IsMilitaryTime, IsDateString, IsNotEmpty, IsOptional, IsIn, MaxLength, IsUrl, IsEnum } from "class-validator";
+import { modalidadePref, statusMonitor } from "src/generated/prisma/enums";
 
-export class CriarSolicitacaoDto {
+export class CriarMonitoriaDto {
     @IsDateString()
-    @IsOptional()
+    @IsNotEmpty()
     @MaxLength(10)
     data!: string
 
     @IsString()
     @IsOptional()
     @IsMilitaryTime()
-    horario!: string
+    horario_inicio!: string
 
-    @IsIn(['presencial', 'online'])
+    @IsString()
+    @IsOptional()
+    @IsMilitaryTime()
+    horario_fim!: string
+
+    @IsEnum(modalidadePref)
     @IsNotEmpty()
-    modalidade!: string
+    modalidade!: modalidadePref
 
     @IsUrl()
     @IsOptional()
     link?: string;
 
-    @IsIn(['pendente, aceita, concluida, cancelada'])
+    @IsEnum(statusMonitor)
     @IsNotEmpty()
-    status!: string
+    status!: statusMonitor
 
     @IsString()
     @IsOptional()
+    @MaxLength(300)
     justificativa?: string
 }

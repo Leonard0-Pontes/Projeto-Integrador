@@ -1,4 +1,6 @@
-import { IsString, IsNotEmpty, IsOptional, IsEmail, IsInt, IsDateString, MaxLength, MinLength, IsIn } from "class-validator";
+import { IsString, IsNotEmpty, IsEmail, MaxLength, MinLength, IsEnum } from "class-validator";
+import { funcaoUsuario } from "src/generated/prisma/enums";
+import { periodos } from "src/generated/prisma/enums";
 
 export class CriarUsuarioDto {
     @IsString()
@@ -9,21 +11,22 @@ export class CriarUsuarioDto {
 
     @IsEmail()
     @IsNotEmpty()
+    @MaxLength(100)
     email!: string;
 
     @IsString()
     @IsNotEmpty()
     senha!: string;
 
-    @IsIn(['aluno', 'monitor', 'professor', 'admin'])
+    @IsEnum(funcaoUsuario)
     @IsNotEmpty()
-    funcao!: string;
+    funcao!: funcaoUsuario;
 
     @IsString()
-    @IsOptional()
-    curso?: string;
+    @IsNotEmpty()
+    curso!: string;
 
-    @IsInt()
-    @IsOptional()
-    periodo?: number;
+    @IsEnum(periodos)
+    @IsNotEmpty()
+    periodo!: periodos;
 }
