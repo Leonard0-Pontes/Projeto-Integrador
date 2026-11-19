@@ -1,9 +1,6 @@
-const API_URL = 'https://pi-soma-backend.onrender.com';
-
 const formulario = document.querySelector('#loginForm');
 
 if (formulario) {
-
     formulario.addEventListener('submit', async (event) => {
         event.preventDefault();
 
@@ -24,8 +21,6 @@ if (formulario) {
             }
 
             const data = await response.json();
-            console.log('Os dados foram recebidos da API.'); // 
-
             sessionStorage.setItem('token', data.accessToken);
 
             window.location.href = 'index.html';

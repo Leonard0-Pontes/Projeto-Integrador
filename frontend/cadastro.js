@@ -1,4 +1,6 @@
-const API_URL = 'https://pi-soma-backend.onrender.com';
+import { API_URL } from '../config/api'; // ajuste o caminho relativo
+
+fetch(`${API_URL}/usuarios`);
 
 const formulario = document.querySelector('#cadastroForm');
 

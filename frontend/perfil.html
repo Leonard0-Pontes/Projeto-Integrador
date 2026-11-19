@@ -60,11 +60,14 @@
                         <div class="card">
                             <div class="card-body">
                                 <p class="card-text mb-2"><strong>E-mail:</strong>
-                                    <span id="email-usuario"></span></p>
+                                    <span id="email-usuario"></span>
+                                </p>
                                 <p class="card-text mb-2"><strong>Curso:</strong>
-                                    <span id="curso-usuario"></span></p>
+                                    <span id="curso-usuario"></span>
+                                </p>
                                 <p class="card-text mb-0"><strong>Período:</strong>
-                                    <span id="periodo-usuario"></span></p>
+                                    <span id="periodo-usuario"></span>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -82,17 +85,19 @@
                                     <select id="disciplina-select" class="form-select" required>
                                         <option value="" disabled selected>Carregando disciplinas...</option>
                                     </select>
-                                    <button type="submit" class="btn btn-primary text-nowrap" id="btn-confirmar-disciplina">
+                                    <button type="submit" class="btn btn-primary text-nowrap"
+                                        id="btn-confirmar-disciplina">
                                         Adicionar
                                     </button>
-                                    <button type="button" class="btn btn-outline-secondary" id="btn-cancelar-disciplina">
+                                    <button type="button" class="btn btn-outline-secondary"
+                                        id="btn-cancelar-disciplina">
                                         Cancelar
                                     </button>
                                 </div>
                             </form>
                             <ul class="list-group list-group-flush" id="lista-disciplinas"></ul>
-                            <div id="mensagem-perfil" class="alert d-none m-3 mb-0" role="status"
-                                aria-live="polite"></div>
+                            <div id="mensagem-perfil" class="alert d-none m-3 mb-0" role="status" aria-live="polite">
+                            </div>
                         </div>
                         <div class="small text-muted mt-2" id="ajuda-disciplinas"></div>
                     </div>
@@ -105,6 +110,8 @@
         crossorigin="anonymous"></script>
     <script src="./auth.js"></script>
     <script src="./perfil.js"></script>
+    <script src="config.js"></script>
+    <script src="./login.js"></script>
 </body>
 
 </html>

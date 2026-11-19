@@ -1,4 +1,7 @@
-const API_URL = 'https://pi-soma-backend.onrender.com';
+import { API_URL } from '../config/api'; // ajuste o caminho relativo
+
+fetch(`${API_URL}/solicitacao`);
+
 (() => {
     const token = window.auth.exigirToken();
     if (!token) return;
