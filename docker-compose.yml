@@ -1,28 +1,79 @@
+#services:
+#  backend:
+#    build:
+#      context: ./back-end
+#      dockerfile: Dockerfile
+#    container_name: pi_backend
+#    ports:
+#      - "3000:3000"
+#    volumes:
+#      - ./back-end:/app
+#      - /app/node_modules
+#    environment:
+#      - NODE_ENV=development
+#    env_file:
+#      - ./back-end/.env
+#
+#  frontend:
+#    build:
+#      context: ./frontend
+#      dockerfile: Dockerfile
+#    container_name: pi_frontend
+#    ports:
+#      - "5173:5173"
+#    volumes:
+#      - ./frontend:/app
+#      - /app/node_modules
+#    depends_on:
+#      - backend
+
 services:
+  db:
+    image: postgres:16-alpine
+    container_name: monitoria-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: monitoria
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d monitoria" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
   backend:
     build:
       context: ./back-end
       dockerfile: Dockerfile
-    container_name: pi_backend
+    container_name: monitoria-backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
     ports:
       - "3000:3000"
-    volumes:
-      - ./back-end:/app
-      - /app/node_modules
     environment:
-      - NODE_ENV=development
-    env_file:
-      - ./back-end/.env
+      NODE_ENV: development
+      PORT: 3000
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/monitoria?schema=public
+      JWT_SECRET: segredo_local_desenvolvimento
+      CORS_ORIGIN: http://localhost:8080
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: pi_frontend
-    ports:
-      - "5173:5173"
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
+    container_name: monitoria-frontend
+    restart: unless-stopped
     depends_on:
       - backend
+    ports:
+      - "8080:80"
+
+volumes:
+  pgdata:
