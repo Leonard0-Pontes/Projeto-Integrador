@@ -246,6 +246,7 @@ npx cypress open
 Desenvolvido pela equipe do **Projeto Integrador** — Curso Superior de Tecnologia em Sistemas para Internet (IFRN — Campus Currais Novos):
 
 - **Leonardo Pontes** — [@Leonard0-Pontes](https://github.com/Leonard0-Pontes)
+- **Ângelo Gabriel** — [@V0idNight](https://github.com/V0idNight)
 - *(Adicione aqui os demais integrantes da equipe)*
 
 ---
