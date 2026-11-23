@@ -4,18 +4,18 @@
 ## Front-end
 
 ### Telas
-- [ ] Tela de **Login** (E-mail e senha)
-- [ ] Tela de **Cadastro** 
-  - [ ] Campos: Nome, e-mail, senha, curso, período, disciplinas de interesse
+- [x] Tela de **Login** (E-mail e senha)
+- [x] Tela de **Cadastro** 
+  - [x] Campos: Nome, e-mail, senha, curso, período, disciplinas de interesse
 - [ ] Tela **Home / Dashboard**
   - [ ] Listagem de solicitações pendentes (para monitores)
   - [ ] Atalhos para "Minhas Monitorias" e "Minhas Solicitações"
 - [ ] Tela de **Perfil do Usuário**
-  - [ ] Exibição de dados (Nome, Curso, Período)
+  - [x] Exibição de dados (Nome, Curso, Período)
   - [ ] Listagem das disciplinas que o usuário oferece monitoria
   - [ ] Botão de Logout
-- [ ] Tela de **Solicitação de Monitoria** (Aluno)
-  - [ ] Formulário: Disciplina, assunto, descrição da dificuldade, data/horário de preferência, modalidade (Presencial/Online), local/link
+- [x] Tela de **Solicitação de Monitoria** (Aluno)
+  - [x] Formulário: Disciplina, assunto, descrição da dificuldade, data/horário de preferência, modalidade (Presencial/Online), local/link
 - [ ] Tela de **Oferta / Detalhes da Solicitação** (Monitor)
   - [ ] Visualizar detalhes da solicitação
   - [ ] Botão "Aceitar monitoria"
@@ -45,8 +45,8 @@
 - [ ] Área de toque mínima de 44x44px para botões (ex: botão "Aceitar monitoria")
 
 ### UI/UX
-- [ ] Definir paleta de cores e tipografia do projeto
-- [ ] Criar protótipo de baixa fidelidade
+- [x] Definir paleta de cores e tipografia do projeto
+- [x] Criar protótipo de baixa fidelidade
 - [ ] Feedback visual claro para os Status: `PENDENTE`, `ACEITA`, `AGENDADA`, `CONCLUÍDA`, `CANCELADA`
 - [ ] Empty states (ex: "Você ainda não tem solicitações")
 
@@ -55,25 +55,25 @@
 ## Back-end
 
 ### Regras de Negócio
-- [ ] Um mesmo usuário pode ser **Aluno** e **Monitor** simultaneamente
+- [x] Um mesmo usuário pode ser **Aluno** e **Monitor** simultaneamente
 - [ ] Um monitor não pode aceitar duas solicitações para o mesmo dia/horário
 - [ ] Um aluno não pode ter duas monitorias agendadas para o mesmo horário
-- [ ] Fluxo de status da solicitação: `PENDENTE` -> `ACEITA` -> `AGENDADA` -> `CONCLUÍDA` ou `CANCELADA`
+- [x] Fluxo de status da solicitação: `PENDENTE` -> `ACEITA` -> `AGENDADA` -> `CONCLUÍDA` ou `CANCELADA`
 - [ ] Apenas o monitor pode aceitar a solicitação
 - [ ] O sistema deve registrar o histórico de alteração de status
 - [ ] Administrador pode remover usuários e disciplinas (soft delete)
 - [ ] Não permitir agendamento para datas passadas
 
 ### Validação de Dados
-- [ ] Validar formato de e-mail no cadastro
+- [x] Validar formato de e-mail no cadastro
 - [ ] Validar força da senha
 - [ ] Validar campos obrigatórios na solicitação de monitoria (disciplina, assunto, data, horário)
 - [ ] Sanitizar entradas contra XSS/SQL Injection
 - [ ] Retornar mensagens de erro padronizadas via API
 
 ### Autenticação e Autorização
-- [ ] Implementar autenticação via JWT (ou Spring Security Session)
-- [ ] Hash de senha com BCrypt
+- [x] Implementar autenticação via JWT (ou Spring Security Session)
+- [x] Hash de senha com BCrypt
 - [ ] Middleware de autorização para rotas de Admin
 - [ ] Middleware para garantir que apenas o aluno dono da solicitação possa cancelá-la
 
@@ -98,21 +98,21 @@
 
 ## Banco de Dados (PostgreSQL)
 
-- [ ] Modelagem do DER (Diagrama Entidade-Relacionamento)
-- [ ] Tabela `usuarios` (id, nome, email, senha_hash, curso, periodo)
-- [ ] Tabela `disciplinas` (id, nome)
-- [ ] Tabela `usuario_disciplina` (Tabela associativa para disciplinas que o usuário oferece monitoria)
-- [ ] Tabela `solicitacoes` (id, aluno_id, monitor_id, disciplina_id, assunto, descricao, data_preferencia, hora_preferencia, modalidade, local_link, status)
-- [ ] Tabela `agendamentos` ou histórico de status (para rastrear quando mudou de PENDENTE para ACEITA, etc.)
-- [ ] Definir chaves primárias e estrangeiras
+- [x] Modelagem do DER (Diagrama Entidade-Relacionamento)
+- [x] Tabela `usuarios` (id, nome, email, senha_hash, curso, periodo)
+- [x] Tabela `disciplinas` (id, nome)
+- [x] Tabela `usuario_disciplina` (Tabela associativa para disciplinas que o usuário oferece monitoria)
+- [x] Tabela `solicitacoes` (id, aluno_id, monitor_id, disciplina_id, assunto, descricao, data_preferencia, hora_preferencia, modalidade, local_link, status)
+- [x] Tabela `agendamentos` ou histórico de status (para rastrear quando mudou de PENDENTE para ACEITA, etc.)
+- [x] Definir chaves primárias e estrangeiras
 - [ ] Criar índices para colunas de busca frequente (ex: `status`, `data_preferencia`)
-- [ ] Criar migrations versionadas
+- [x] Criar migrations versionadas
 
 ---
 
 ## Documentação (Padrão IFRN)
 
-- [ ] **README.md** no GitHub com instruções de instalação (Docker e ambiente local)
+- [x] **README.md** no GitHub com instruções de instalação (Docker e ambiente local)
 - [ ] **Relatório Técnico (ABNT NBR 10719)**:
   - [ ] Redigir Resumo (150 a 500 palavras)
   - [ ] Redigir Introdução (Problema, Objetivo Geral e Específicos)
