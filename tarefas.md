@@ -63,6 +63,7 @@
 - [ ] O sistema deve registrar o histórico de alteração de status
 - [ ] Administrador pode remover usuários e disciplinas (soft delete)
 - [ ] Não permitir agendamento para datas passadas
+- [ ] Cache em pelo menos 1 endpoint
 
 ### Validação de Dados
 - [x] Validar formato de e-mail no cadastro
@@ -134,3 +135,9 @@
 - [ ] Configurar variáveis de ambiente (`.env.example`)
 - [ ] Configurar CI/CD (GitHub Actions) para rodar os testes a cada Pull Request
 - [ ] Configurar gestão de tarefas no Trello (Colunas: *A fazer, Em andamento, Em revisão, Concluído*)
+
+## Extra
+
+- [ ] recuperaçao de conta
+- [ ] login com google
+- [ ] integração com google agendas
