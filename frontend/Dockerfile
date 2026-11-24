@@ -1,13 +1,18 @@
-FROM node:24-alpine
+#FROM node:24-alpine
 
-WORKDIR /app
+#WORKDIR /app
 
-COPY package*.json ./
+#COPY package*.json ./
 
-RUN npm install
+#RUN npm install
 
-COPY . .
+#COPY . .
 
-EXPOSE 5173
+#EXPOSE 5173
 
-CMD ["npm", "run", "dev"]
+#CMD ["npm", "run", "dev"]
+
+FROM nginx:alpine
+COPY . /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
