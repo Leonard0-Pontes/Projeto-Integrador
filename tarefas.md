@@ -13,7 +13,7 @@
 - [ ] Tela de **Perfil do Usuário**
   - [x] Exibição de dados (Nome, Curso, Período)
   - [ ] Listagem das disciplinas que o usuário oferece monitoria
-  - [ ] Botão de Logout
+  - [x] Botão de Logout
 - [x] Tela de **Solicitação de Monitoria** (Aluno)
   - [x] Formulário: Disciplina, assunto, descrição da dificuldade, data/horário de preferência, modalidade (Presencial/Online), local/link
 - [ ] Tela de **Oferta / Detalhes da Solicitação** (Monitor)
@@ -81,9 +81,9 @@
 ### API REST / Endpoints
 - [ ] `POST /auth/login` e `/auth/register`
 - [ ] `GET /users/{id}` e `PUT /users/{id}`
-- [ ] `GET /disciplinas` e `POST /disciplinas` (Admin)
-- [ ] `POST /solicitacoes` (Aluno)
-- [ ] `GET /solicitacoes` (Monitor visualiza pendentes)
+- [x] `GET /disciplinas` e `POST /disciplinas` (Admin)
+- [x] `POST /solicitacoes` (Aluno)
+- [x] `GET /solicitacoes` (Monitor visualiza pendentes)
 - [ ] `PUT /solicitacoes/{id}/aceitar` (Monitor)
 - [ ] `PUT /solicitacoes/{id}/agendar`
 - [ ] `PUT /solicitacoes/{id}/cancelar`
