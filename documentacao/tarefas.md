@@ -67,10 +67,10 @@
 
 ### Validação de Dados
 - [x] Validar formato de e-mail no cadastro
-- [ ] Validar força da senha
 - [ ] Validar campos obrigatórios na solicitação de monitoria (disciplina, assunto, data, horário)
-- [ ] Sanitizar entradas contra XSS/SQL Injection
 - [ ] Retornar mensagens de erro padronizadas via API
+- [ ] Sanitizar entradas contra XSS/SQL Injection (opcinal para entrega)
+- [ ] Validar força da senha (opcional para a entrega)
 
 ### Autenticação e Autorização
 - [x] Implementar autenticação via JWT (ou Spring Security Session)
@@ -89,15 +89,15 @@
 - [ ] `PUT /solicitacoes/{id}/cancelar`
 - [ ] Documentar API com Swagger/OpenAPI
 
-### Testes (Foco em Qualidade)
+### Testes (Foco em Qualidade) (ate dia 10)
 - [ ] Testes unitários para a máquina de estados (Status da Monitoria)
-- [ ] Teste de integração do fluxo completo (Aluno cria -> Monitor aceita -> Agendamento)
-- [ ] Teste de concorrência/carga (Referente ao RNF01 do relatório: tempo de resposta < 2s para 50 usuários)
 - [ ] teste de interface
+- [ ] Teste de integração do fluxo completo (Aluno cria -> Monitor aceita -> Agendamento) (recomendavel)
+- [ ] Teste de concorrência/carga (Referente ao RNF01 do relatório: tempo de resposta < 2s para 50 usuários) (Opcinal para entrega)
 
 ---
 
-## Banco de Dados (PostgreSQL)
+## Banco de Dados (PostgreSQL) (Entregue)
 
 - [x] Modelagem do DER (Diagrama Entidade-Relacionamento)
 - [x] Tabela `usuarios` (id, nome, email, senha_hash, curso, periodo)
@@ -106,7 +106,7 @@
 - [x] Tabela `solicitacoes` (id, aluno_id, monitor_id, disciplina_id, assunto, descricao, data_preferencia, hora_preferencia, modalidade, local_link, status)
 - [x] Tabela `agendamentos` ou histórico de status (para rastrear quando mudou de PENDENTE para ACEITA, etc.)
 - [x] Definir chaves primárias e estrangeiras
-- [ ] Criar índices para colunas de busca frequente (ex: `status`, `data_preferencia`)
+- [ ] Criar índices para colunas de busca frequente (ex: `status`, `data_preferencia`) (opcional para entrega)
 - [x] Criar migrations versionadas
 
 ---
@@ -114,27 +114,27 @@
 ## Documentação (Padrão IFRN)
 
 - [x] **README.md** no GitHub com instruções de instalação (Docker e ambiente local)
-- [ ] **Relatório Técnico (ABNT NBR 10719)**:
-  - [ ] Redigir Resumo (150 a 500 palavras)
-  - [ ] Redigir Introdução (Problema, Objetivo Geral e Específicos)
-  - [ ] Detalhar Materiais e Métodos (Tecnologias justificadas, Técnicas de elicitação, Cronograma)
-  - [ ] Documentar Desenvolvimento (Casos de uso detalhados, DER, Arquitetura em camadas)
+- [x] **Relatório Técnico (ABNT NBR 10719)**:
+  - [x] Redigir Resumo (150 a 500 palavras)
+  - [x] Redigir Introdução (Problema, Objetivo Geral e Específicos)
+  - [x] Detalhar Materiais e Métodos (Tecnologias justificadas, Técnicas de elicitação, Cronograma)
+  - [x] Documentar Desenvolvimento (Casos de uso detalhados, DER, Arquitetura em camadas)
   - [ ] Escrever Resultados (O que foi entregue, testes aprovados/reprovados)
-  - [ ] Escrever Conclusões e Trabalhos Futuros
-  - [ ] Formatar Referências
+  - [x] Escrever Conclusões e Trabalhos Futuros
+  - [x] Formatar Referências
 - [ ] Documentação da API (Swagger)
-- [ ] Manual do usuário (Aluno/Monitor/Admin)
+- [ ] Manual do usuário (Aluno/Monitor/Admin) (recomendavel para entrega)
 
 ---
 
-## Infraestrutura e DevOps
+## Infraestrutura e DevOps (Entregue)
 
-- [ ] Configurar `Dockerfile` para o Front-end (React)
-- [ ] Configurar `Dockerfile` para o Back-end (Spring Boot)
-- [ ] Criar `docker-compose.yml` para subir App + Banco PostgreSQL de uma vez
-- [ ] Configurar variáveis de ambiente (`.env.example`)
-- [ ] Configurar CI/CD (GitHub Actions) para rodar os testes a cada Pull Request
-- [ ] Configurar gestão de tarefas no Trello (Colunas: *A fazer, Em andamento, Em revisão, Concluído*)
+- [x] Configurar `Dockerfile` para o Front-end (React)
+- [x] Configurar `Dockerfile` para o Back-end (Spring Boot)
+- [x] Criar `docker-compose.yml` para subir App + Banco PostgreSQL de uma vez
+- [x] Configurar variáveis de ambiente (`.env.example`)
+- [ ] Configurar CI/CD (GitHub Actions) para rodar os testes a cada Pull Request (opcional recomendado)
+- [x] Configurar gestão de tarefas no Trello (Colunas: *A fazer, Em andamento, Em revisão, Concluído*)
 
 ## Extra
 
