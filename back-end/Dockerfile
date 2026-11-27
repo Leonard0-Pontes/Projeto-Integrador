@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . .
 
-RUN DATABASE_URL_UNPOOLED="postgresql://user:password@localhost:5432/database" npx prisma generate
+RUN npx prisma generate
 RUN npm run build
 
 EXPOSE 3000
