@@ -1,4 +1,4 @@
-const API_URL = 'https://pi-soma-backend.onrender.com';
+const API_URL = window.APP_CONFIG.API_URL;
 
 const formulario = document.querySelector('#loginForm');
 

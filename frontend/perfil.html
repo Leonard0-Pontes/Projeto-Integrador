@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt_BR" data-bs-theme="dark">
+<html lang="pt-BR" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -40,13 +40,11 @@
             </nav>
         </header>
         <main class="row justify-content-center my-4">
-            <div class="col-11">
+            <div class="col-10">
                 <div class="card">
                     <div class="row align-items-center">
                         <div class="col-auto my-4 ms-4">
-                            <div id="avatar-inicial"
-                                class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center fw-bold fs-2"
-                                style="width: 80px; height: 80px;" aria-hidden="true"></div>
+                            <div id="avatar-inicial" class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center fw-bold fs-2" style="width: 80px; height: 80px;" aria-hidden="true"></div>
                         </div>
                         <div class="col my-2">
                             <h5 class="card-title fw-bold" id="nome-usuario"></h5>
@@ -60,20 +58,21 @@
                         <div class="card">
                             <div class="card-body">
                                 <p class="card-text mb-2"><strong>E-mail:</strong>
-                                    <span id="email-usuario"></span></p>
+                                    <span id="email-usuario"></span>
+                                </p>
                                 <p class="card-text mb-2"><strong>Curso:</strong>
-                                    <span id="curso-usuario"></span></p>
+                                    <span id="curso-usuario"></span>
+                                </p>
                                 <p class="card-text mb-0"><strong>Período:</strong>
-                                    <span id="periodo-usuario"></span></p>
+                                    <span id="periodo-usuario"></span>
+                                </p>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-lg-7">
                         <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 my-4">
                             <h4 class="mb-0" id="titulo-disciplinas">Disciplinas:</h4>
-                            <button type="button" class="btn btn-success" id="btn-adicionar-disciplina">
-                                Adicionar disciplina
-                            </button>
+                            <button type="button" class="btn btn-success" id="btn-adicionar-disciplina">Adicionar disciplina</button>
                         </div>
                         <div class="card">
                             <form id="form-adicionar-disciplina" class="card-body d-none">
@@ -82,17 +81,15 @@
                                     <select id="disciplina-select" class="form-select" required>
                                         <option value="" disabled selected>Carregando disciplinas...</option>
                                     </select>
-                                    <button type="submit" class="btn btn-primary text-nowrap" id="btn-confirmar-disciplina">
-                                        Adicionar
+                                    <button type="submit" class="btn btn-primary text-nowrap" id="btn-confirmar-disciplina">Adicionar
                                     </button>
-                                    <button type="button" class="btn btn-outline-secondary" id="btn-cancelar-disciplina">
-                                        Cancelar
+                                    <button type="button" class="btn btn-outline-secondary" id="btn-cancelar-disciplina">Cancelar
                                     </button>
                                 </div>
                             </form>
                             <ul class="list-group list-group-flush" id="lista-disciplinas"></ul>
-                            <div id="mensagem-perfil" class="alert d-none m-3 mb-0" role="status"
-                                aria-live="polite"></div>
+                            <div id="mensagem-perfil" class="alert d-none m-3 mb-0" role="status" aria-live="polite">
+                            </div>
                         </div>
                         <div class="small text-muted mt-2" id="ajuda-disciplinas"></div>
                     </div>
@@ -100,11 +97,10 @@
             </div>
         </main>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
-    <script src="./auth.js"></script>
-    <script src="./perfil.js"></script>
+    <script src="config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="auth.js"></script>
+    <script src="perfil.js"></script>
 </body>
 
 </html>

@@ -25,14 +25,14 @@ export class UsuarioController {
 
     @UseGuards(JwtAuthGuard, RolesGuard)
     @Roles(funcaoUsuario.Aluno, funcaoUsuario.Monitor)
-    @Get('me')
+    @Get(':id')
     buscarMeuPerfil(@Req() request: RequisicaoAutenticada) {
         return this.usuariosService.buscarMeuPerfil(request.user.id);
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
     @Roles(funcaoUsuario.Aluno, funcaoUsuario.Monitor)
-    @Get('me/disciplinas')
+    @Get(':id/disciplinas')
     listarMinhasDisciplinas(@Req() request: RequisicaoAutenticada) {
         return this.usuariosService.listarDisciplinas(
             request.user.id,
@@ -42,7 +42,7 @@ export class UsuarioController {
 
     @UseGuards(JwtAuthGuard, RolesGuard)
     @Roles(funcaoUsuario.Aluno, funcaoUsuario.Monitor)
-    @Post('me/disciplinas')
+    @Post(':id/disciplinas')
     adicionarDisciplina(
         @Body() body: AdicionarDisciplinaDto,
         @Req() request: RequisicaoAutenticada,
@@ -54,9 +54,10 @@ export class UsuarioController {
         );
     }
 
+    // Deve ser modificado para utilizar Soft Delete
     @UseGuards(JwtAuthGuard, RolesGuard)
     @Roles(funcaoUsuario.Aluno, funcaoUsuario.Monitor)
-    @Delete('me/disciplinas/:disciplinaId')
+    @Delete(':id/disciplinas/:disciplinaId')
     removerDisciplina(
         @Param('disciplinaId', ParseIntPipe) disciplinaId: number,
         @Req() request: RequisicaoAutenticada,

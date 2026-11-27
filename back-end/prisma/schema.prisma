@@ -6,6 +6,7 @@
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x", "debian-openssl-3.0.x"]
 }
 
 datasource db {
@@ -58,6 +59,7 @@ model Usuario {
   solicitacoes Solicitacoes[]
   monitoria Monitoria[]
   user_materia Usuario_Disciplina[]
+  participantes_monitoria Participante_Monitoria[]
 }
 
 model Disciplinas {
@@ -105,6 +107,7 @@ model Monitoria {
   justificativa_cancel String? @db.VarChar(300)
   criado_em DateTime @db.Timestamptz()
   atualizado_em DateTime @db.Timestamptz()
+  participantes Participante_Monitoria[]
 }
 
 model Usuario_Disciplina {
@@ -115,5 +118,17 @@ model Usuario_Disciplina {
   disciplina Disciplinas @relation(fields: [disciplina_id], references: [id])
   funcao funcaoUsuario
   criado_em DateTime @db.Timestamptz()
+  ativo Boolean @default(false)
   @@unique([usuario_id, disciplina_id])
+}
+
+model Participante_Monitoria {
+  monitoria_id Int
+  monitoria Monitoria @relation(fields: [monitoria_id], references: [id], onDelete: Cascade)
+  aluno_id Int
+  aluno Usuario @relation(fields: [aluno_id], references: [id], onDelete: Cascade)
+  ativo Boolean @default(true)
+  criado_em DateTime @db.Timestamptz()
+  @@id([monitoria_id, aluno_id])
+  @@index([aluno_id])
 }

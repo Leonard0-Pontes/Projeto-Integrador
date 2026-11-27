@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes da monitoria - SOMA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <main class="container min-vh-100 d-flex align-items-center justify-content-center py-4">
+        <section class="card w-100" style="max-width: 640px;">
+            <div class="card-body p-4 p-md-5">
+                <h1 id="tituloMonitoria" class="h2 card-space">Carregando monitoria...</h1>
+                <div id="mensagemDetalhesMonitoria" class="alert alert-info" role="status" aria-live="polite">Carregando detalhes...</div>
+                <div id="conteudoDetalhesMonitoria" class="d-none">
+                    <div class="card border-secondary">
+                        <div class="card-body">
+                            <h2 class="h5">Descrição</h2>
+                            <p id="descricaoMonitoria" class="card-text"></p>
+                            <h2 class="h5 mt-4">Informações da monitoria</h2>
+                            <div id="informacoesMonitoria"></div>
+                            <div id="linkMonitoria" class="d-none mt-3"></div>
+                        </div>
+                    </div>
+                    <button id="btnFecharDetalhesMonitoria" type="button" class="btn btn-secondary mt-4">Fechar detalhes</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="auth.js"></script>
+    <script src="detalhes-monitoria.js"></script>
+</body>
+
+</html>

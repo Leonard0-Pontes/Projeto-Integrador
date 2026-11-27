@@ -5,13 +5,7 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { CriarSolicitacaoDto } from './dtos/criar-solicitacao.dto';
 import { funcaoUsuario } from 'src/generated/prisma/enums';
-
-type RequisicaoAutenticada = {
-    user: {
-        id: number;
-        funcao: funcaoUsuario;
-    };
-};
+import type { RequisicaoAutenticada } from 'src/auth/types/requisicao-autenticada.type';
 
 @Controller('solicitacoes')
 export class SolicitacaoController {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt_BR" data-bs-theme="dark">
+<html lang="pt-BR" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -40,7 +40,7 @@
             </nav>
         </header>
         <main class="row justify-content-center my-4">
-            <div class="col-11">
+            <div class="col-10">
                 <h3 class="mb-3">Solicitações:</h3>
                 <div class="card">
                     <div class="card-body">
@@ -49,7 +49,8 @@
                             <div class="row card-space">
                                 <div class="col">
                                     <label for="assunto" class="form-label">Assunto:</label>
-                                    <input type="text" id="assunto" name="assunto" class="form-control" required maxlength="100">
+                                    <input type="text" id="assunto" name="assunto" class="form-control" required
+                                        maxlength="100">
                                 </div>
                                 <div class="col">
                                     <label for="data" class="form-label">Data:</label>
@@ -77,9 +78,19 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="row card-space">
+                                <div class="col">
+                                    <label for="descricao" class="form-label">Descrição:</label>
+                                    <div class="position-relative">
+                                        <textarea id="descricao" name="descricao" class="form-control pb-4" rows="4" maxlength="500" aria-describedby="contadorDescricao" placeholder="Descreva brevemente o assunto da monitoria."></textarea>
+                                        <small id="contadorDescricao" class="position-absolute bottom-0 end-0 px-2 pb-2 text-body-secondary pe-none">500 caracteres restantes</small>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row justify-content-center">
-                                <div class="col-6">
-                                    <input class="btn btn-primary overflowFull" type="submit" value="Enviar">
+                                <div class="d-flex flex-wrap justify-content-center gap-2">
+                                    <button class="btn btn-primary" type="submit">Enviar</button>
+                                    <button class="btn btn-outline-secondary" type="reset">Limpar campos</button>
                                 </div>
                             </div>
                         </form>
@@ -90,11 +101,10 @@
             </div>
         </main>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
-    <script src="./auth.js"></script>
-    <script src="./solicitacao.js"></script>
+    <script src="config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="auth.js"></script>
+    <script src="solicitacao.js"></script>
 </body>
 
 </html>

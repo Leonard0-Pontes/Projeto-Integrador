@@ -108,12 +108,23 @@ export class UsuarioService {
         }
 
         try {
-            const vinculo = await this.prisma.usuario_Disciplina.create({
-                data: {
+            const vinculo = await this.prisma.usuario_Disciplina.upsert({
+                where: {
+                    usuario_id_disciplina_id: {
+                        usuario_id: usuarioId,
+                        disciplina_id: disciplina.id,
+                    },
+                },
+                create: {
                     usuario_id: usuarioId,
                     disciplina_id: disciplina.id,
                     funcao,
+                    ativo: true,
                     criado_em: new Date(),
+                },
+                update: {
+                    funcao,
+                    ativo: true,
                 },
                 select: {
                     disciplina: {
@@ -121,7 +132,6 @@ export class UsuarioService {
                     },
                 },
             });
-
             return vinculo.disciplina;
         } catch (error) {
             if (error instanceof Prisma.PrismaClientKnownRequestError) {

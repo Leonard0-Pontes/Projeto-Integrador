@@ -1,4 +1,4 @@
-import { IsString, IsMilitaryTime, IsDateString, IsOptional, MaxLength, IsUrl, IsEnum } from "class-validator";
+import { IsString, IsMilitaryTime, IsDateString, IsOptional, MaxLength, IsUrl, IsIn, IsEnum } from "class-validator";
 import { modalidadePref, statusMonitor } from "src/generated/prisma/enums";
 
 export class AtualizarMonitoriaDto {
@@ -17,9 +17,9 @@ export class AtualizarMonitoriaDto {
     @IsMilitaryTime()
     horario_fim?: string
 
-    @IsEnum(modalidadePref)
+    @IsIn([modalidadePref.Presencial, modalidadePref.Online])
     @IsOptional()
-    modalidade?: modalidadePref
+    modalidade!: modalidadePref;
 
     @IsUrl()
     @IsOptional()

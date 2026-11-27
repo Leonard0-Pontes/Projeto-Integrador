@@ -2,16 +2,7 @@ import { Injectable, NotFoundException, BadRequestException } from '@nestjs/comm
 import { CriarSolicitacaoDto } from './dtos/criar-solicitacao.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { funcaoUsuario, Prisma } from 'src/generated/prisma/client';
-
-function paraData(data: string): Date {
-  const [ano, mes, dia] = data.split('-').map(Number);
-  return new Date(Date.UTC(ano, mes - 1, dia));
-}
-
-function paraHorario(horario: string): Date {
-  const [hora, minuto] = horario.split(':').map(Number);
-  return new Date(Date.UTC(2026, 0, 1, hora, minuto));
-}
+import { paraData, paraHorario } from 'src/common/utils/funcoes-comuns.util';
 
 @Injectable()
 export class SolicitacaoService {
